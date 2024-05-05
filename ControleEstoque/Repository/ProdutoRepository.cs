@@ -141,7 +141,7 @@ namespace ControleEstoque.Repository.ProdutoRepository
             }
         }
 
-        public bool AlterProduto(Produto produto)
+        public bool UpdateProduct(Produto produto)
         {
             try
             {

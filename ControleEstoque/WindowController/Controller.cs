@@ -5,12 +5,12 @@ namespace ControleEstoque.WindowController
 {
     static class Controller
     {
-        private static FormProduto formProduto;
+        private static FormProduct formProduto;
         private static FormAlterarEstoque formAlterarEstoque;
 
         public static DialogResult ShowFormAddProduto()
         {
-            formProduto = new FormProduto
+            formProduto = new FormProduct("Adicionar Produto")
             {
                 StartPosition = FormStartPosition.CenterScreen
             };
@@ -19,7 +19,7 @@ namespace ControleEstoque.WindowController
 
         public static DialogResult ShowFormAlterarProduto(Produto produto)
         {
-            formProduto = new FormProduto();
+            formProduto = new FormProduct("Alterar Produto");
             formProduto.Produto = produto;
             formProduto.StartPosition = FormStartPosition.CenterScreen;
             return formProduto.ShowDialog();

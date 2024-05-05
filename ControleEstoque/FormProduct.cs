@@ -1,0 +1,399 @@
+﻿using ControleEstoque.Classes;
+using ControleEstoque.Repository.ProdutoRepository;
+using System;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+
+namespace ControleEstoque
+{
+    public partial class FormProduct : Form
+    {
+        private bool validSubmit = false;
+        private ProdutoRepository produtoRepository = new ProdutoRepository();
+        private Produto product;
+
+        internal Produto Produto { get => product; set => product = value; }
+
+        public FormProduct(string title)
+        {
+            InitializeComponent();
+
+            labelTitle.Text = title;
+            Text = title;
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            openFileDialogSelectImage.Filter = "PNG|*.png|JPG|*.jpg|JPEG|*.jpeg";
+
+            if (openFileDialogSelectImage.ShowDialog() == DialogResult.OK)
+            {
+                textBoxUrlImage.Text = openFileDialogSelectImage.FileName;
+                pictureBoxImage.ImageLocation = openFileDialogSelectImage.FileName;
+            }
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+        }
+
+        private void clearFields()
+        {
+            if (product != null)
+            {
+                textBoxCod.Text = product.Codigo;
+                textBoxName.Text = product.Nome;
+                textBoxDescription.Text = product.Descricao;
+                textBoxUnit.Text = product.Unidade;
+                textBoxUrlImage.Text = product.UrlImagem;
+                pictureBoxImage.ImageLocation = product.UrlImagem;
+                validarFormulario();
+            }
+            else
+            {
+                textBoxCod.Clear();
+                textBoxName.Clear();
+                textBoxDescription.Clear();
+                textBoxUnit.Clear();
+                textBoxUrlImage.Clear();
+                pictureBoxImage.ImageLocation = "";
+            }
+            pictureBoxImage.Refresh();
+            errorProvider1.Clear();
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            clearFields();
+        }
+
+        private void validarFormulario()
+        {
+            if (textBoxName.Text.Length == 0)
+            {
+                errorProvider1.SetError(textBoxName, "Entre com um nome");
+                validSubmit = false;
+
+            }
+            else
+            {
+                errorProvider1.SetError(textBoxName, "");
+                validSubmit = true;
+            }
+            if (textBoxUnit.Text.Length == 0)
+            {
+                errorProvider1.SetError(textBoxUnit, "Entre com uma unidade");
+                validSubmit = false;
+
+            }
+            else
+            {
+                errorProvider1.SetError(textBoxUnit, "");
+                validSubmit = true;
+            }
+        }
+
+        private bool isNamePresentInDatabase()
+        {
+            // A variável "product" representa um produto enviado para este formulário para
+            // ser alterado.
+            //
+            // Começamos verificando se o nome digitado é igual ao nome original
+            // deste produto, caso se trate de uma alteração, lembrando que devemos verificar
+            // primeiro se o "product" não é nulo para evitar "NullPointer".
+            //
+            // Caso este seja o caso não há necessidade de prosseguir com a verificação,
+            // pois o nome realmente constara como igual na base de dados e será modificado sem
+            // problemas com o "update" do sql.
+            if (product != null && product.Nome.ToUpper().Equals(textBoxName.Text.ToUpper()))
+            {
+                return false;
+            }
+
+            // Realiza uma pesquisa com o nome inserido na "textBoxName" e atribui o retorno
+            // para uma variável com o nome 
+            Produto productSearched = produtoRepository.GetProdutoByName(textBoxName.Text);
+
+            // Caso algum produto seja retornado da pesquisa, então temos o nome já cadastrado
+            // na base de dados, resta verificar se estamos alterando um produto, pois neste caso o 
+            // nome igual realmente aparecerá no banco de dados, mas ele será alterado com o
+            // "update", portanto não haverá problemas
+            if (productSearched != null)
+            {
+                if (textBoxName.Text.ToUpper().Equals(productSearched.Nome.ToUpper()))
+                {
+                    MessageBox.Show(
+                        "Nome já cadastrado para outro produto. Insira um novo nome e tente novamente",
+                        "Nome já cadastrado",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    errorProvider1.SetError(textBoxName, "Nome já em uso");
+                    return true;
+                }
+            }
+            // Caso a pesquisa no banco de dados retorne "null" não temos o nome cadastrado na
+            // base de dados, portanto temos um retorno como "false"
+            return false;
+        }
+
+        private Produto prepareProductForUpdate()
+        {
+            // Criamos um novo produto com os dados do formulário e o id do produto
+            // a ser alterado (retirado da variável "product")
+            Produto modifiedProduct = new Produto(
+                product.Id,
+                textBoxName.Text,
+                textBoxDescription.Text,
+                textBoxCod.Text,
+                textBoxUnit.Text,
+                textBoxUrlImage.Text
+                );
+
+            // Criamos o caminho onde a imagem deve ser salva dentro da pasta do sistema. 
+            string newUrlImage = "../../Assets/Imagens/" + modifiedProduct.Nome + Path.GetExtension(modifiedProduct.UrlImagem);
+
+            // Caso a nova imagem possa ser encontrada no computador e ela seja diferente da imagem
+            // já cadastrada para o produto efetuamos a exclusão da antiga imagem e a cópia
+            // da nova imagem para a pasta do sistema.
+            if (File.Exists(modifiedProduct.UrlImagem) && modifiedProduct.UrlImagem != product.UrlImagem)
+            {
+                // Caso o produto já apresente uma imagem cadastrada efetuamos o delete
+                if (product.UrlImagem.Length > 0)
+                {
+                    if (File.Exists(product.UrlImagem))
+                    {
+                        File.Delete(product.UrlImagem);
+                    }
+                }
+                // E copiamos a nova imagem
+                File.Copy(Path.GetFullPath(modifiedProduct.UrlImagem), newUrlImage);
+            }
+            // Caso a nova imagem não possa ser encontrada não será efetuada alteração na
+            // imagem do produto e o processo de alteração será cancelado.
+            else
+            {
+                MessageBox.Show(
+                    "Arquivo de imagem especificado não encontrado, selecione um novo arquivo e tente novamente.",
+                    "Erro ao salvar imagem",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return null;
+            }
+
+            // Caso tudo tenha ido bem alteramos o caminho da imagem do produto para a nova url.
+            modifiedProduct.UrlImagem = newUrlImage;
+
+            // E retornamos o produto com os dados para update.
+            return modifiedProduct;
+        }
+
+        private Produto prepareNewProductForInsert()
+        {
+            // Criamos o novo produto sem nenhum id, mas com todos os dados do formulário.
+            Produto newProduct = new Produto(
+                textBoxName.Text,
+                textBoxDescription.Text,
+                textBoxCod.Text,
+                textBoxUnit.Text,
+                textBoxUrlImage.Text
+                );
+
+            // Criamos a nova url onde será salva a imagem na pasta do sistema.
+            string newUrlImage = "../../Assets/Imagens/" + newProduct.Nome + Path.GetExtension(newProduct.UrlImagem);
+
+            try
+            {
+                // Verificamos se a imagem definida pelo usuário existe.
+                if (File.Exists(newProduct.UrlImagem))
+                {
+                    // Realiza a cópia da imagem para a pasta do sistema.
+                    File.Copy(Path.GetFullPath(newProduct.UrlImagem), newUrlImage);
+                }
+                // Caso a imagem não seja encontrada no computador uma mensagem é exibida e
+                // a ação é cancelada sem cadastrar o produto no banco de dados.
+                else
+                {
+                    MessageBox.Show(
+                        "Arquivo de imagem especificado não encontrado, selecione um novo arquivo e tente novamente.",
+                        "Erro ao salvar imagem",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                        );
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                MessageBox.Show(
+                    "Erro inesperado. Contate o administrador do sistema. \n \n Erro: 270-FP",
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            // Realizamos a atualização do local da imagem para a nova url onde foi
+            // salva na pasta do sistema
+            newProduct.UrlImagem = newUrlImage;
+
+            return newProduct;
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            // Verificar se o formulário está valido por meio da variável "validSubmit" e, caso não
+            // esteja, retorna uma mensagem de erro, realiza a validação do formulário novamente
+            // para ativar o "errorprovider" caso ele não esteja sendo exibido e executa
+            // o return para parar a execução do "Save"
+            if (!validSubmit)
+            {
+                MessageBox.Show(
+                    "Preencha os campos requisitados e tente novamente!",
+                    "Erros encontrados",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+                validarFormulario();
+                return;
+            }
+
+            // Verificar se o nome já está cadastrado na base de dados.
+            if (isNamePresentInDatabase())
+            {
+                return;
+            }
+
+            // Verifica se "product" é nulo, caso não seja estamos lidando com a alteração
+            // de um produto já existente
+            if (product != null)
+            {
+                Produto modifiedProduct = prepareProductForUpdate();
+
+                if (modifiedProduct != null && produtoRepository.UpdateProduct(modifiedProduct))
+                {
+                    MessageBox.Show(
+                        "Produto alterado com sucesso!",
+                        "Alteração Efetuada",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation
+                        );
+                    DialogResult = DialogResult.OK;
+                } else
+                {
+                    MessageBox.Show(
+                        "Erro ao cadastrar produto. \n \n BTNSVFPModProd",
+                        "Erro",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                        );
+                }
+            }
+            // Se "product" for nulo, então temos um novo produto para ser cadastrado.
+            else
+            {
+                Produto newProduct = prepareNewProductForInsert();
+
+                // O produto é inserido na base de dados
+                if (newProduct!= null && produtoRepository.InsertProduto(newProduct))
+                {
+                    MessageBox.Show(
+                        "Produto cadastrado com sucesso!", 
+                        "Cadastro Efetuado", 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Exclamation
+                        );
+                    DialogResult result = MessageBox.Show("Deseja cadastrar um novo produto?", "Novo Cadastro", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.No)
+                    {
+                        DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        clearFields();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Erro ao cadastrar produto. \n \n BTNSVFPNewProd",
+                        "Erro",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                        );
+                }
+            }
+        }
+
+        private void textBoxName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (textBoxName.Text.Length == 0)
+            {
+                errorProvider1.SetError(textBoxName, "Entre com um nome");
+                validSubmit = false;
+
+            }
+            else
+            {
+                errorProvider1.SetError(textBoxName, "");
+                validSubmit = true;
+            }
+        }
+
+        private void textBoxUnit_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (textBoxUnit.Text.Length == 0)
+            {
+                errorProvider1.SetError(textBoxUnit, "Entre com uma unidade");
+                validSubmit = false;
+
+            }
+            else
+            {
+                errorProvider1.SetError(textBoxUnit, "");
+                validSubmit = true;
+            }
+        }
+
+        private void FormAddProduct_Load(object sender, EventArgs e)
+        {
+            if (product != null)
+            {
+                clearFields();
+            }
+        }
+
+        private void textBoxUnit_TextChanged(object sender, EventArgs e)
+        {
+            textBoxUnit.Text = Regex.Replace(textBoxUnit.Text, "[^a-zA-Z]", "");
+        }
+
+        private void textBoxUnit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verificação de equals para as teclas Left, Up, Down, Rigth e Backspace
+            bool leftKey = e.KeyChar.Equals(Keys.Left);
+            bool rigthKey = e.KeyChar.Equals(Keys.Right);
+            bool upKey = e.KeyChar.Equals(Keys.Up);
+            bool downKey = e.KeyChar.Equals(Keys.Down);
+
+            // Por algum motivo o backspace tem que ser convertido para char antes
+            // do equals, ou então ele gerara um false para o backspace
+            bool backspace = e.KeyChar.Equals(Convert.ToChar(Keys.Back));
+
+            // Verificando se nenhuma das teclas acima foi pressionada
+            if (!upKey && !downKey && !leftKey && !rigthKey && !backspace)
+            {
+                // Fazendo a verificação do regex para ver se algo que não é uma letra
+                // minúscula ou maiúscula foi pressionada
+                if (Regex.Match(e.KeyChar.ToString(), "[^a-zA-Z]").Success)
+                {
+                    // Cancelando o evento de KeyPress caso encontre
+                    e.Handled = true;
+                }
+            }
+
+        }
+    }
+}

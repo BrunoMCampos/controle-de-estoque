@@ -54,11 +54,11 @@
     <Compile Include="Classes\EnumMovementType.cs" />
     <Compile Include="Classes\EnumPrivileges.cs" />
     <Compile Include="Classes\Login.cs" />
-    <Compile Include="FormProduto.cs">
+    <Compile Include="FormProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormProduto.Designer.cs">
-      <DependentUpon>FormProduto.cs</DependentUpon>
+    <Compile Include="FormProduct.Designer.cs">
+      <DependentUpon>FormProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\DataTableEstoqueConstructor.cs" />
     <Compile Include="Classes\Connection.cs" />
@@ -70,11 +70,11 @@
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPrincipal.cs">
+    <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPrincipal.Designer.cs">
-      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,14 +92,14 @@
     <EmbeddedResource Include="FormAlterarEstoque.resx">
       <DependentUpon>FormAlterarEstoque.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormProduto.resx">
-      <DependentUpon>FormProduto.cs</DependentUpon>
+    <EmbeddedResource Include="FormProduct.resx">
+      <DependentUpon>FormProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPrincipal.resx">
-      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

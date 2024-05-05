@@ -87,7 +87,7 @@
             // 
             // buttonSalvar
             // 
-            this.buttonSalvar.Location = new System.Drawing.Point(139, 264);
+            this.buttonSalvar.Location = new System.Drawing.Point(158, 264);
             this.buttonSalvar.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.buttonSalvar.Name = "buttonSalvar";
             this.buttonSalvar.Size = new System.Drawing.Size(125, 23);
@@ -102,7 +102,7 @@
             this.comboBoxMotivo.FormattingEnabled = true;
             this.comboBoxMotivo.Location = new System.Drawing.Point(90, 148);
             this.comboBoxMotivo.Name = "comboBoxMotivo";
-            this.comboBoxMotivo.Size = new System.Drawing.Size(174, 21);
+            this.comboBoxMotivo.Size = new System.Drawing.Size(193, 21);
             this.comboBoxMotivo.TabIndex = 12;
             this.comboBoxMotivo.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxMotivo_Validating);
             // 
@@ -112,7 +112,7 @@
             this.textBoxJustificativa.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
             this.textBoxJustificativa.Multiline = true;
             this.textBoxJustificativa.Name = "textBoxJustificativa";
-            this.textBoxJustificativa.Size = new System.Drawing.Size(174, 70);
+            this.textBoxJustificativa.Size = new System.Drawing.Size(193, 70);
             this.textBoxJustificativa.TabIndex = 11;
             // 
             // textBoxNovoSaldo
@@ -221,7 +221,7 @@
             this.Controls.Add(this.panelPrincipal);
             this.Name = "FormAlterarEstoque";
             this.ShowIcon = false;
-            this.Text = "QuantidadeEstoque";
+            this.Text = "Alterar Quantidade em Estoque";
             this.Load += new System.EventHandler(this.FormAlterarEstoque_Load);
             this.panelPrincipal.ResumeLayout(false);
             this.panelPrincipal.PerformLayout();
