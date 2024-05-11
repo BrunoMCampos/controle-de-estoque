@@ -5,38 +5,38 @@ namespace ControleEstoque.WindowController
 {
     static class Controller
     {
-        private static FormProduct formProduto;
-        private static FormAlterarEstoque formAlterarEstoque;
+        private static FormProduct formProduct;
+        private static FormUpdateStock formUpdateStock;
 
         public static DialogResult ShowFormAddProduto()
         {
-            formProduto = new FormProduct("Adicionar Produto")
+            formProduct = new FormProduct("Adicionar Produto")
             {
                 StartPosition = FormStartPosition.CenterScreen
             };
-            return formProduto.ShowDialog();
+            return formProduct.ShowDialog();
         }
 
-        public static DialogResult ShowFormAlterarProduto(Produto produto)
+        public static DialogResult ShowFormAlterarProduto(Product produto)
         {
-            formProduto = new FormProduct("Alterar Produto");
-            formProduto.Produto = produto;
-            formProduto.StartPosition = FormStartPosition.CenterScreen;
-            return formProduto.ShowDialog();
+            formProduct = new FormProduct("Alterar Produto");
+            formProduct.Produto = produto;
+            formProduct.StartPosition = FormStartPosition.CenterScreen;
+            return formProduct.ShowDialog();
         }
 
-        public static DialogResult ShowFormAdicionarSaldo(ItemEstoque itemEstoque)
+        public static DialogResult ShowFormAdicionarSaldo(StockItem itemEstoque)
         {
-            formAlterarEstoque = new FormAlterarEstoque("Adicionar Saldo", EnumMovementType.Add, itemEstoque);
-            formAlterarEstoque.StartPosition = FormStartPosition.CenterScreen;
-            return formAlterarEstoque.ShowDialog();
+            formUpdateStock = new FormUpdateStock("Adicionar Saldo", EnumMovementType.Add, itemEstoque);
+            formUpdateStock.StartPosition = FormStartPosition.CenterScreen;
+            return formUpdateStock.ShowDialog();
         }
 
-        public static DialogResult ShowFormSubtrairSaldo(ItemEstoque itemEstoque)
+        public static DialogResult ShowFormSubtrairSaldo(StockItem itemEstoque)
         {
-            formAlterarEstoque = new FormAlterarEstoque("Subtrair Saldo", EnumMovementType.Subtract, itemEstoque);
-            formAlterarEstoque.StartPosition = FormStartPosition.CenterScreen;
-            return formAlterarEstoque.ShowDialog();
+            formUpdateStock = new FormUpdateStock("Subtrair Saldo", EnumMovementType.Subtract, itemEstoque);
+            formUpdateStock.StartPosition = FormStartPosition.CenterScreen;
+            return formUpdateStock.ShowDialog();
         }
     }
 }

@@ -96,6 +96,7 @@
             this.pictureBoxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage.TabIndex = 2;
             this.pictureBoxImage.TabStop = false;
+            this.pictureBoxImage.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.pictureBoxImage_LoadCompleted);
             // 
             // textBoxDescription
             // 
@@ -113,7 +114,6 @@
             this.textBoxUnit.Name = "textBoxUnit";
             this.textBoxUnit.Size = new System.Drawing.Size(100, 20);
             this.textBoxUnit.TabIndex = 3;
-            this.textBoxUnit.TextChanged += new System.EventHandler(this.textBoxUnit_TextChanged);
             this.textBoxUnit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxUnit_KeyPress);
             this.textBoxUnit.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxUnit_Validating);
             // 
@@ -236,6 +236,7 @@
             this.labelTitle.Size = new System.Drawing.Size(263, 33);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Adicionar Produto";
+            this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // openFileDialogSelectImage
             // 
@@ -257,7 +258,7 @@
             this.Name = "FormProduct";
             this.ShowIcon = false;
             this.Text = "Adicionar Produto";
-            this.Load += new System.EventHandler(this.FormAddProduct_Load);
+            this.Load += new System.EventHandler(this.FormProduct_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).EndInit();

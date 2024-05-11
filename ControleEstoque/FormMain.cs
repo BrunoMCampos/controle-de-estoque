@@ -12,9 +12,9 @@ namespace ControleEstoque
     public partial class FormMain : Form
     {
 
-        ItemEstoqueRepository itemRepository = new ItemEstoqueRepository();
-        ProdutoRepository produtoRepository = new ProdutoRepository();
-        List<ItemEstoque> itemsStock = new List<ItemEstoque>();
+        StockItemRepository itemRepository = new StockItemRepository();
+        ProductRepository produtoRepository = new ProductRepository();
+        List<StockItem> itemsStock = new List<StockItem>();
 
         public FormMain()
         {
@@ -28,9 +28,9 @@ namespace ControleEstoque
 
         private void buttonUpdateTable_Click(object sender, EventArgs e)
         {
-            DataTableEstoqueConstructor tableConstructor = new DataTableEstoqueConstructor();
+            DataTableStockConstructor tableConstructor = new DataTableStockConstructor();
 
-            itemsStock = itemRepository.GetAllItemEstoque(checkBoxOnlyPositive.Checked);
+            itemsStock = itemRepository.GetAllStockItems(checkBoxOnlyPositive.Checked);
 
             tableConstructor.addItem(itemsStock);
 
@@ -57,12 +57,12 @@ namespace ControleEstoque
 
         private void dataGridViewEstoque_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            pictureBoxImage.ImageLocation = itemsStock[e.RowIndex].Produto.UrlImagem;
+            pictureBoxImage.ImageLocation = itemsStock[e.RowIndex].Product.UrlImage;
         }
 
         private void buttonUpdateProduct_Click(object sender, EventArgs e)
         {
-            Produto productToUpdate = itemsStock[dataGridViewStock.SelectedRows[0].Index].Produto;
+            Product productToUpdate = itemsStock[dataGridViewStock.SelectedRows[0].Index].Product;
             if (Controller.ShowFormAlterarProduto(productToUpdate) == DialogResult.OK)
             {
                 buttonUpdateTable_Click(sender, e);
@@ -78,7 +78,7 @@ namespace ControleEstoque
         {
             if (dataGridViewStock.SelectedRows.Count > 0)
             {
-                ItemEstoque item = itemsStock[dataGridViewStock.SelectedRows[0].Index];
+                StockItem item = itemsStock[dataGridViewStock.SelectedRows[0].Index];
                 DialogResult dialog = DialogResult.OK;
                 if (movement == EnumMovementType.Subtract)
                 {
@@ -108,19 +108,19 @@ namespace ControleEstoque
         {
             if (dataGridViewStock.SelectedRows.Count > 0)
             {
-                Produto produto = itemsStock[dataGridViewStock.SelectedRows[0].Index].Produto;
-                string nomeProduto = itemsStock[dataGridViewStock.SelectedRows[0].Index].Produto.Nome;
+                Product produto = itemsStock[dataGridViewStock.SelectedRows[0].Index].Product;
+                string nomeProduto = itemsStock[dataGridViewStock.SelectedRows[0].Index].Product.Name;
                 string message = "Deseja realmente excluir o produto " + nomeProduto;
                 DialogResult result = MessageBox.Show(message, "Confirmar Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     if (produtoRepository.DeleteProduto(produto))
                     {
-                        if (produto.UrlImagem != null && produto.UrlImagem.Length > 0)
+                        if (produto.UrlImage != null && produto.UrlImage.Length > 0)
                         {
                             try
                             {
-                                File.Delete(produto.UrlImagem);
+                                File.Delete(produto.UrlImage);
                             }
                             catch (Exception ex)
                             {
@@ -141,14 +141,17 @@ namespace ControleEstoque
 
         private void dataGridViewStock_SelectionChanged(object sender, EventArgs e)
         {
-
+            if (dataGridViewStock.SelectedRows.Count > 0)
+            {
+                pictureBoxImage.ImageLocation = itemsStock[dataGridViewStock.SelectedRows[0].Index].Product.UrlImage;
+            }
         }
 
         private void dataGridViewStock_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridViewStock.SelectedRows.Count > 0)
             {
-                pictureBoxImage.ImageLocation = itemsStock[dataGridViewStock.SelectedRows[0].Index].Produto.UrlImagem;
+                pictureBoxImage.ImageLocation = itemsStock[dataGridViewStock.SelectedRows[0].Index].Product.UrlImage;
             }
         }
     }
