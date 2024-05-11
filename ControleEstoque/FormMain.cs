@@ -86,7 +86,7 @@ namespace ControleEstoque
                 }
                 else if (movement == EnumMovementType.Add)
                 {
-                    dialog = Controller.ShowFormSubtrairSaldo(item);
+                    dialog = Controller.ShowFormAdicionarSaldo(item);
                 }
                 if (dialog == DialogResult.OK)
                 {
@@ -95,7 +95,11 @@ namespace ControleEstoque
             }
             else
             {
-                MessageBox.Show("Selecione uma linha para realizar a alteração de estoque.", "Seleção Incorreta", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(
+                    "Selecione uma linha para realizar a alteração de estoque.", 
+                    "Seleção Incorreta", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Stop);
             }
         }
 

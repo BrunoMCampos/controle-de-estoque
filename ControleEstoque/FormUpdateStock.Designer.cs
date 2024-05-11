@@ -71,7 +71,7 @@
             this.panelPrincipal.Controls.Add(this.label1);
             this.panelPrincipal.Location = new System.Drawing.Point(12, 12);
             this.panelPrincipal.Name = "panelPrincipal";
-            this.panelPrincipal.Size = new System.Drawing.Size(293, 292);
+            this.panelPrincipal.Size = new System.Drawing.Size(315, 292);
             this.panelPrincipal.TabIndex = 0;
             // 
             // buttonCancelar
@@ -213,13 +213,13 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // FormAlterarEstoque
+            // FormUpdateStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 313);
+            this.ClientSize = new System.Drawing.Size(336, 313);
             this.Controls.Add(this.panelPrincipal);
-            this.Name = "FormAlterarEstoque";
+            this.Name = "FormUpdateStock";
             this.ShowIcon = false;
             this.Text = "Alterar Quantidade em Estoque";
             this.Load += new System.EventHandler(this.FormAlterarEstoque_Load);

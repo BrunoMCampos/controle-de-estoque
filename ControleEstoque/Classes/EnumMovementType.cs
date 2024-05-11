@@ -2,7 +2,7 @@
 {
     public enum EnumMovementType
     {
-        Add,
-        Subtract
+        Add = 0,
+        Subtract = 1
     }
 }

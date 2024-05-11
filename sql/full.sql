@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS alteracao_estoque (
     quantidade_movimentada DECIMAL(5,2) NOT NULL,
     saldo_final DECIMAL(5,2) NOT NULL,
     motivo VARCHAR(25) NOT NULL,
-    justificativa VARCHAR (255));
+    justificativa VARCHAR (255),
+    data_hora_alteracao DATETIME NOT NULL);
     
 CREATE TRIGGER 
 	alterar_estoque

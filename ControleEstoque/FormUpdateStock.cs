@@ -12,18 +12,24 @@ namespace ControleEstoque
         private StockUpdateRecordRepository updateStockRepository = new StockUpdateRecordRepository();
         private StockItem stockItem;
 
-        public FormUpdateStock(string tituloForm, EnumMovementType movimentacao, StockItem itemEstoque)
+        public FormUpdateStock(string formTitle, EnumMovementType movementType, StockItem stockItem)
         {
             InitializeComponent();
-            this.Text = tituloForm;
-            this.movementType = movimentacao;
-            this.stockItem = itemEstoque;
+            this.Text = formTitle;
+            this.movementType = movementType;
+            this.stockItem = stockItem;
         }
 
         private void FormAlterarEstoque_Load(object sender, EventArgs e)
         {
             this.textBoxSaldoAtual.Text = stockItem.StockAmount.ToString();
-            this.textBoxMovimentacao.Text = movementType.ToString();
+            if(movementType == EnumMovementType.Add)
+            {
+                this.textBoxMovimentacao.Text = "Adicionar";
+            } else
+            {
+                this.textBoxMovimentacao.Text = "Subtrair";
+            }
             this.textBoxQuantidade.Text = "0";
 
             calcularNovoSaldo();
@@ -127,7 +133,8 @@ namespace ControleEstoque
                             quantidadeDouble,
                             novoSaldoDouble,
                             comboBoxMotivo.Text,
-                            textBoxJustificativa.Text);
+                            textBoxJustificativa.Text,
+                            DateTime.Now);
 
                         if (updateStockRepository.InsertStockUpdateRecord(alteracaoEstoque))
                         {
@@ -152,7 +159,8 @@ namespace ControleEstoque
                         quantidadeDouble,
                         novoSaldoDouble,
                         comboBoxMotivo.Text,
-                        textBoxJustificativa.Text);
+                        textBoxJustificativa.Text,
+                        DateTime.Now);
 
                     if (updateStockRepository.InsertStockUpdateRecord(alteracaoEstoque))
                     {

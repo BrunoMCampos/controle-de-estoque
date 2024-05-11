@@ -1,4 +1,6 @@
-﻿namespace ControleEstoque.Classes
+﻿using System;
+
+namespace ControleEstoque.Classes
 {
     internal class StockUpdateRecord
     {
@@ -10,8 +12,9 @@
         private double endAmount;
         private string reason;
         private string justification;
+        private DateTime updateDateTime;
 
-        public StockUpdateRecord(StockItem stockItem, double startAmount, EnumMovementType movementType, double movementedAmount, double endAmount, string reason, string justification)
+        public StockUpdateRecord(StockItem stockItem, double startAmount, EnumMovementType movementType, double movementedAmount, double endAmount, string reason, string justification, DateTime updateDateTime)
         {
             this.ItemEstoque = stockItem;
             this.StartAmount = startAmount;
@@ -20,6 +23,7 @@
             this.EndAmount = endAmount;
             this.Reason = reason;
             this.Justification = justification;
+            this.updateDateTime = updateDateTime;
         }
 
         public int Id { get => id; set => id = value; }
@@ -29,6 +33,7 @@
         public double EndAmount { get => endAmount; set => endAmount = value; }
         public string Reason { get => reason; set => reason = value; }
         public string Justification { get => justification; set => justification = value; }
+        public DateTime UpdateDateTime { get => updateDateTime; set => updateDateTime = value; }
         internal StockItem ItemEstoque { get => stockItem; set => stockItem = value; }
     }
 }
