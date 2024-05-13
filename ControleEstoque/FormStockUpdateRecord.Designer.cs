@@ -53,7 +53,7 @@
             this.panel1.Controls.Add(this.textBoxCurrentAmount);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(666, 54);
+            this.panel1.Size = new System.Drawing.Size(249, 134);
             this.panel1.TabIndex = 0;
             // 
             // labelProductName
@@ -69,7 +69,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(492, 35);
+            this.label2.Location = new System.Drawing.Point(36, 104);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 5;
@@ -78,7 +78,7 @@
             // labelStartDate
             // 
             this.labelStartDate.AutoSize = true;
-            this.labelStartDate.Location = new System.Drawing.Point(487, 7);
+            this.labelStartDate.Location = new System.Drawing.Point(31, 76);
             this.labelStartDate.Name = "labelStartDate";
             this.labelStartDate.Size = new System.Drawing.Size(66, 13);
             this.labelStartDate.TabIndex = 4;
@@ -87,7 +87,7 @@
             // dateTimePickerEndDate
             // 
             this.dateTimePickerEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerEndDate.Location = new System.Drawing.Point(559, 29);
+            this.dateTimePickerEndDate.Location = new System.Drawing.Point(103, 98);
             this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
             this.dateTimePickerEndDate.Size = new System.Drawing.Size(104, 20);
             this.dateTimePickerEndDate.TabIndex = 3;
@@ -95,7 +95,7 @@
             // dateTimePickerStartDate
             // 
             this.dateTimePickerStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerStartDate.Location = new System.Drawing.Point(559, 3);
+            this.dateTimePickerStartDate.Location = new System.Drawing.Point(103, 72);
             this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
             this.dateTimePickerStartDate.Size = new System.Drawing.Size(104, 20);
             this.dateTimePickerStartDate.TabIndex = 2;
@@ -103,7 +103,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(292, 24);
+            this.label1.Location = new System.Drawing.Point(34, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 1;
@@ -112,7 +112,7 @@
             // textBoxCurrentAmount
             // 
             this.textBoxCurrentAmount.Enabled = false;
-            this.textBoxCurrentAmount.Location = new System.Drawing.Point(365, 21);
+            this.textBoxCurrentAmount.Location = new System.Drawing.Point(107, 44);
             this.textBoxCurrentAmount.Name = "textBoxCurrentAmount";
             this.textBoxCurrentAmount.Size = new System.Drawing.Size(100, 20);
             this.textBoxCurrentAmount.TabIndex = 0;
@@ -120,9 +120,9 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.treeView1);
-            this.panel2.Location = new System.Drawing.Point(12, 72);
+            this.panel2.Location = new System.Drawing.Point(12, 152);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(666, 366);
+            this.panel2.Size = new System.Drawing.Size(249, 176);
             this.panel2.TabIndex = 1;
             // 
             // treeView1
@@ -130,14 +130,14 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(666, 366);
+            this.treeView1.Size = new System.Drawing.Size(249, 176);
             this.treeView1.TabIndex = 0;
             // 
             // FormStockUpdateRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 450);
+            this.ClientSize = new System.Drawing.Size(274, 342);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "FormStockUpdateRecord";

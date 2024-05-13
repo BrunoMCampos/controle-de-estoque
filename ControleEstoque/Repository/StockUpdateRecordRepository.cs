@@ -50,7 +50,8 @@ namespace ControleEstoque.Repository
                 MySqlCommand query = new MySqlCommand(
                         "SELECT * FROM alteracao_estoque " +
                         "WHERE " +
-                        "estoque_id = @stockId",
+                        "estoque_id = @stockId " +
+                        "ORDER BY data_hora_alteracao DESC",
                         Connection.getConnection()
                     );
                 query.Parameters.AddWithValue("@stockId", stockItem.Id.ToString());
