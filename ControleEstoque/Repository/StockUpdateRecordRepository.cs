@@ -85,5 +85,62 @@ namespace ControleEstoque.Repository
                 return new List<StockUpdateRecord>(); 
             }
         }
+
+        public List<StockUpdateRecord> getAllRecordsByStockItemBetweenDates(StockItem stockItem, DateTime startDate, DateTime endDate)
+        {
+            List<StockUpdateRecord> stockUpdateRecordList = new List<StockUpdateRecord>();
+
+            // Primeiro iremos garantir que a data inicial tenha o horário 00:00:00, pegando apenas a data e atribuindo novamente à variável.
+            startDate = startDate.Date;
+
+            // Aqui faremos o mesmo, mas adicionaremos 1 dia e pegaremos apenas a data, deixando a hora de lado, assim teremos a hora 
+            // 00:00:00 do dia seguinte, depois subtraímos 1 segundo e temos as 23:59:59 do dia anterior que é o que estamos pesquisando.
+            endDate = endDate.Date.AddDays(1).Date.Subtract(new TimeSpan(0,0,1));
+
+            try
+            {
+                MySqlCommand query = new MySqlCommand(
+                        "SELECT * FROM alteracao_estoque " +
+                        "WHERE " +
+                        "estoque_id = @stockId AND " +
+                        "data_hora_alteracao BETWEEN @startDate AND @endDate " +
+                        "ORDER BY data_hora_alteracao DESC",
+                        Connection.getConnection()
+                    );
+                query.Parameters.AddWithValue("@stockId", stockItem.Id.ToString());
+                query.Parameters.AddWithValue("@startDate", startDate);
+                query.Parameters.AddWithValue("@endDate", endDate);
+
+                Connection.Connect();
+
+                MySqlDataReader reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    StockUpdateRecord stockUpdate = new StockUpdateRecord(
+                        stockItem,
+                        Double.Parse(reader["saldo_inicial"].ToString()),
+                        (EnumMovementType)Int32.Parse(reader["movimentacao"].ToString()),
+                        Double.Parse(reader["quantidade_movimentada"].ToString()),
+                        Double.Parse(reader["saldo_final"].ToString()),
+                        reader["motivo"].ToString(),
+                        reader["justificativa"].ToString(),
+                        DateTime.Parse(reader["data_hora_alteracao"].ToString())
+                    );
+
+                    stockUpdateRecordList.Add(stockUpdate);
+                }
+
+                Connection.Disconnect();
+
+                return stockUpdateRecordList;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+                return new List<StockUpdateRecord>();
+            }
+        }
     }
 }

@@ -31,6 +31,7 @@ namespace ControleEstoque
 
         private void createNodes(List<StockUpdateRecord> listStockUpdateRecords)
         {
+            treeView1.Nodes.Clear();
             // Percorre toda a lista com um for, porque iremos alterar a lista durante o processo
             for(int i = 0; i < listStockUpdateRecords.Count; i++)
             {
@@ -72,6 +73,12 @@ namespace ControleEstoque
                     listStockUpdateRecords.Remove(record);
                 });
             }
+        }
+
+        private void buttonUpdate_Click(object sender, System.EventArgs e)
+        {
+            List<StockUpdateRecord> listStockUpdateRecords = stockUpdateRecordRepository.getAllRecordsByStockItemBetweenDates(stockItem, dateTimePickerStartDate.Value, dateTimePickerEndDate.Value);
+            createNodes(listStockUpdateRecords);
         }
     }
 }
