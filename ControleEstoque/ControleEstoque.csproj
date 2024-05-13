@@ -127,11 +127,11 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormUpdateStockRecord.cs">
+    <Compile Include="FormStockUpdateRecord.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormUpdateStockRecord.Designer.cs">
-      <DependentUpon>FormUpdateStockRecord.cs</DependentUpon>
+    <Compile Include="FormStockUpdateRecord.Designer.cs">
+      <DependentUpon>FormStockUpdateRecord.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -158,8 +158,8 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormUpdateStockRecord.resx">
-      <DependentUpon>FormUpdateStockRecord.cs</DependentUpon>
+    <EmbeddedResource Include="FormStockUpdateRecord.resx">
+      <DependentUpon>FormStockUpdateRecord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

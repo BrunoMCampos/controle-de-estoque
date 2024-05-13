@@ -1,10 +1,12 @@
 ﻿using ControleEstoque.Classes;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Utilities;
 using System;
+using System.Collections.Generic;
 
 namespace ControleEstoque.Repository
 {
-    internal class StockUpdateRecordRepository
+    public class StockUpdateRecordRepository
     {
         public bool InsertStockUpdateRecord(StockUpdateRecord alteracaoEstoque)
         {
@@ -36,6 +38,50 @@ namespace ControleEstoque.Repository
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
                 return false;
+            }
+        }
+
+        public List<StockUpdateRecord> getAllRecordsByStockItem(StockItem stockItem)
+        {
+            List<StockUpdateRecord> stockUpdateRecordList = new List<StockUpdateRecord>();
+
+            try
+            {
+                MySqlCommand query = new MySqlCommand(
+                        "SELECT * FROM alteracao_estoque " +
+                        "WHERE " +
+                        "estoque_id = @stockId",
+                        Connection.getConnection()
+                    );
+                query.Parameters.AddWithValue("@stockId", stockItem.Id.ToString());
+
+                Connection.Connect();
+
+                MySqlDataReader reader = query.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    StockUpdateRecord stockUpdate = new StockUpdateRecord(
+                        stockItem,
+                        Double.Parse(reader["saldo_inicial"].ToString()),
+                        (EnumMovementType) Int32.Parse(reader["movimentacao"].ToString()),
+                        Double.Parse(reader["quantidade_movimentada"].ToString()),
+                        Double.Parse(reader["saldo_final"].ToString()),
+                        reader["motivo"].ToString(),
+                        reader["justificativa"].ToString(),
+                        DateTime.Parse(reader["data_hora_alteracao"].ToString())
+                    );
+
+                    stockUpdateRecordList.Add(stockUpdate);
+                }
+
+                Connection.Disconnect();
+
+                return stockUpdateRecordList;
+            } catch (Exception e){ 
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+                return new List<StockUpdateRecord>(); 
             }
         }
     }

@@ -15,6 +15,7 @@ namespace ControleEstoque
         StockItemRepository itemRepository = new StockItemRepository();
         ProductRepository produtoRepository = new ProductRepository();
         List<StockItem> itemsStock = new List<StockItem>();
+        DataTableStockConstructor tableConstructor = new DataTableStockConstructor();
 
         public FormMain()
         {
@@ -28,13 +29,12 @@ namespace ControleEstoque
 
         private void buttonUpdateTable_Click(object sender, EventArgs e)
         {
-            DataTableStockConstructor tableConstructor = new DataTableStockConstructor();
-
+            tableConstructor.removeAll();
             itemsStock = itemRepository.GetAllStockItems(checkBoxOnlyPositive.Checked);
 
             tableConstructor.addItem(itemsStock);
 
-            dataGridViewStock.DataSource = tableConstructor.getDataTableEstoque();
+            dataGridViewStock.DataSource = tableConstructor.getDataTableStock();
             dataGridViewStock.Refresh();
             dataGridViewStock.ClearSelection();
 
@@ -44,7 +44,7 @@ namespace ControleEstoque
 
         private void buttonAddProduct_Click(object sender, EventArgs e)
         {
-            if (Controller.ShowFormAddProduto() == DialogResult.OK)
+            if (Controller.ShowFormAddProduct() == DialogResult.OK)
             {
                 buttonUpdateTable_Click(sender, e);
             }
@@ -62,10 +62,21 @@ namespace ControleEstoque
 
         private void buttonUpdateProduct_Click(object sender, EventArgs e)
         {
-            Product productToUpdate = itemsStock[dataGridViewStock.SelectedRows[0].Index].Product;
-            if (Controller.ShowFormAlterarProduto(productToUpdate) == DialogResult.OK)
+            if(dataGridViewStock.SelectedRows.Count > 0)
             {
-                buttonUpdateTable_Click(sender, e);
+                string productId = dataGridViewStock.SelectedRows[0].Cells[0].Value.ToString();
+                Product productToUpdate = itemsStock.Find(item => item.Product.Id.ToString().Equals(productId)).Product;
+                if (Controller.ShowFormUpdateProduct(productToUpdate) == DialogResult.OK)
+                {
+                    buttonUpdateTable_Click(sender, e);
+                }
+            } else
+            {
+                MessageBox.Show(
+                    "Selecione uma linha para realizar a alteração.",
+                    "Seleção Incorreta",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Stop);
             }
         }
 
@@ -156,6 +167,33 @@ namespace ControleEstoque
             if (dataGridViewStock.SelectedRows.Count > 0)
             {
                 pictureBoxImage.ImageLocation = itemsStock[dataGridViewStock.SelectedRows[0].Index].Product.UrlImage;
+            }
+        }
+
+        private void textBoxProductName_TextChanged(object sender, EventArgs e)
+        {
+            List<StockItem> searchedItems = itemsStock.FindAll(item => item.Product.Name.ToUpper().Contains(textBoxProductName.Text.ToUpper()));
+            tableConstructor.removeAll();
+            tableConstructor.addItem(searchedItems);
+
+            dataGridViewStock.DataSource = tableConstructor.getDataTableStock();
+            dataGridViewStock.Update();
+        }
+
+        private void buttonStockUpdateRecords_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewStock.SelectedRows.Count > 0)
+            {
+                StockItem item = itemsStock[dataGridViewStock.SelectedRows[0].Index];
+                Controller.ShowFormStockUpdateRecords(item);
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Selecione uma linha para verificar os registros de alteração de estoque.",
+                    "Seleção Incorreta",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Stop);
             }
         }
     }

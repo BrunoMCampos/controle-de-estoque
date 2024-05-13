@@ -7,8 +7,9 @@ namespace ControleEstoque.WindowController
     {
         private static FormProduct formProduct;
         private static FormUpdateStock formUpdateStock;
+        private static FormStockUpdateRecord formStockUpdateRecord;
 
-        public static DialogResult ShowFormAddProduto()
+        public static DialogResult ShowFormAddProduct()
         {
             formProduct = new FormProduct("Adicionar Produto")
             {
@@ -17,7 +18,7 @@ namespace ControleEstoque.WindowController
             return formProduct.ShowDialog();
         }
 
-        public static DialogResult ShowFormAlterarProduto(Product produto)
+        public static DialogResult ShowFormUpdateProduct(Product produto)
         {
             formProduct = new FormProduct("Alterar Produto");
             formProduct.Produto = produto;
@@ -37,6 +38,12 @@ namespace ControleEstoque.WindowController
             formUpdateStock = new FormUpdateStock("Subtrair Saldo", EnumMovementType.Subtract, itemEstoque);
             formUpdateStock.StartPosition = FormStartPosition.CenterScreen;
             return formUpdateStock.ShowDialog();
+        }
+        public static DialogResult ShowFormStockUpdateRecords(StockItem itemEstoque)
+        {
+            formStockUpdateRecord = new FormStockUpdateRecord(itemEstoque);
+            formStockUpdateRecord.StartPosition = FormStartPosition.CenterScreen;
+            return formStockUpdateRecord.ShowDialog();
         }
     }
 }

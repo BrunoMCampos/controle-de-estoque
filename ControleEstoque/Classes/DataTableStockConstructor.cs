@@ -3,7 +3,7 @@ using System.Data;
 
 namespace ControleEstoque.Classes
 {
-    internal class DataTableStockConstructor
+    public class DataTableStockConstructor
     {
         private DataTable table = new DataTable();
 
@@ -14,6 +14,11 @@ namespace ControleEstoque.Classes
             table.Columns.Add("Nome do Produto");
             table.Columns.Add("Quantidade em Estoque");
             table.Columns.Add("Un.");
+        }
+
+        public void removeAll()
+        {
+            table.Rows.Clear();
         }
 
         public void addItem(StockItem item)
@@ -34,7 +39,7 @@ namespace ControleEstoque.Classes
             }
         }
 
-        public DataTable getDataTableEstoque()
+        public DataTable getDataTableStock()
         {
             return table;
         }

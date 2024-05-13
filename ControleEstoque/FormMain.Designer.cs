@@ -42,6 +42,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBoxProductName = new System.Windows.Forms.TextBox();
             this.labelProductName = new System.Windows.Forms.Label();
+            this.buttonStockUpdateRecords = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStock)).BeginInit();
@@ -55,6 +56,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.buttonStockUpdateRecords);
             this.panel1.Controls.Add(this.buttonDeleteProduct);
             this.panel1.Controls.Add(this.buttonSubtractStock);
             this.panel1.Controls.Add(this.buttonAddStock);
@@ -62,10 +64,10 @@
             this.panel1.Controls.Add(this.checkBoxOnlyPositive);
             this.panel1.Controls.Add(this.buttonUpdateTable);
             this.panel1.Controls.Add(this.buttonAddProduct);
-            this.panel1.Location = new System.Drawing.Point(658, 232);
+            this.panel1.Location = new System.Drawing.Point(655, 232);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(297, 287);
+            this.panel1.Size = new System.Drawing.Size(300, 287);
             this.panel1.TabIndex = 0;
             // 
             // buttonDeleteProduct
@@ -207,6 +209,7 @@
             this.textBoxProductName.Name = "textBoxProductName";
             this.textBoxProductName.Size = new System.Drawing.Size(509, 20);
             this.textBoxProductName.TabIndex = 1;
+            this.textBoxProductName.TextChanged += new System.EventHandler(this.textBoxProductName_TextChanged);
             // 
             // labelProductName
             // 
@@ -217,6 +220,16 @@
             this.labelProductName.Size = new System.Drawing.Size(93, 13);
             this.labelProductName.TabIndex = 0;
             this.labelProductName.Text = "Nome do Produto:";
+            // 
+            // buttonStockUpdateRecords
+            // 
+            this.buttonStockUpdateRecords.Location = new System.Drawing.Point(5, 86);
+            this.buttonStockUpdateRecords.Name = "buttonStockUpdateRecords";
+            this.buttonStockUpdateRecords.Size = new System.Drawing.Size(285, 23);
+            this.buttonStockUpdateRecords.TabIndex = 6;
+            this.buttonStockUpdateRecords.Text = "Registro de Alterações de Estoque";
+            this.buttonStockUpdateRecords.UseVisualStyleBackColor = true;
+            this.buttonStockUpdateRecords.Click += new System.EventHandler(this.buttonStockUpdateRecords_Click);
             // 
             // FormMain
             // 
@@ -260,5 +273,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox textBoxProductName;
         private System.Windows.Forms.Label labelProductName;
+        private System.Windows.Forms.Button buttonStockUpdateRecords;
     }
 }

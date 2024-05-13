@@ -2,7 +2,7 @@
 
 namespace ControleEstoque.Classes
 {
-    internal class StockUpdateRecord
+    public class StockUpdateRecord
     {
         private int id;
         private StockItem stockItem;
