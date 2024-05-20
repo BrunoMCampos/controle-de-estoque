@@ -101,10 +101,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddUser.Designer.cs">
+      <DependentUpon>FormAddUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Classes\StockUpdateRecord.cs" />
     <Compile Include="Classes\EnumMovementType.cs" />
     <Compile Include="Classes\EnumPrivileges.cs" />
     <Compile Include="Classes\Login.cs" />
+    <Compile Include="FormManageUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManageUsers.Designer.cs">
+      <DependentUpon>FormManageUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +158,12 @@
     <Compile Include="Repository\LoginRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="WindowController\Controller.cs" />
+    <EmbeddedResource Include="FormAddUser.resx">
+      <DependentUpon>FormAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManageUsers.resx">
+      <DependentUpon>FormManageUsers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormUpdateStock.resx">
       <DependentUpon>FormUpdateStock.cs</DependentUpon>
     </EmbeddedResource>

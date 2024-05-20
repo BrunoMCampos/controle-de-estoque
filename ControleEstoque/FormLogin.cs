@@ -1,4 +1,5 @@
 ﻿using ControleEstoque.Repository;
+using ControleEstoque.WindowController;
 using System;
 using System.Windows.Forms;
 
@@ -20,21 +21,33 @@ namespace ControleEstoque
 
             string dataBasePassword = loginRepository.GetPasswordByUser(user);
 
-            bool passwordVerification = BCrypt.Net.BCrypt.Verify(password, dataBasePassword);
-
-            if (passwordVerification)
+            if (dataBasePassword != null && dataBasePassword.Length > 0)
             {
-                DialogResult = DialogResult.Yes;
+                bool passwordVerification = BCrypt.Net.BCrypt.Verify(password, dataBasePassword);
+                if (passwordVerification)
+                {
+                    Controller.createMainForm(loginRepository.GetPrivilegesByUser(user));
+                    DialogResult = DialogResult.Yes;
+                }
+                else
+                {
+                    showErrorMessage();
+                }
             }
             else
             {
-                MessageBox.Show(
-                    "Usuário ou senha inválidos, por favor, tente novamente.", 
-                    "Dados Incorretos para Login", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Warning);
+                showErrorMessage();
             }
 
+        }
+
+        private static void showErrorMessage()
+        {
+            MessageBox.Show(
+                                "Usuário ou senha inválidos, por favor, tente novamente.",
+                                "Dados Incorretos para Login",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
         }
     }
 }

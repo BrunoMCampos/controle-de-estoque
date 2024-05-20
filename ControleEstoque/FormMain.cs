@@ -17,14 +17,22 @@ namespace ControleEstoque
         List<StockItem> itemsStock = new List<StockItem>();
         DataTableStockConstructor tableConstructor = new DataTableStockConstructor();
 
-        public FormMain()
+        EnumPrivileges privileges = new EnumPrivileges();
+
+        public FormMain(EnumPrivileges privileges)
         {
             InitializeComponent();
+            this.privileges = privileges;
         }
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             buttonUpdateTable_Click(sender, e);
+
+            if (privileges != EnumPrivileges.ADMINISTRATOR)
+            {
+                toolStripMainForm.Items.Remove(toolStripDropDownButtonAdministrator);
+            }
         }
 
         private void buttonUpdateTable_Click(object sender, EventArgs e)
@@ -195,6 +203,21 @@ namespace ControleEstoque
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Stop);
             }
+        }
+
+        private void userToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void adicionarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Controller.ShowFormAddUser();
+        }
+
+        private void manageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Controller.ShowFormManageUser();
         }
     }
 }

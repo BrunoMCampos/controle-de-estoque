@@ -1,4 +1,5 @@
 ﻿using ControleEstoque.Classes;
+using ControleEstoque.WindowController;
 using System;
 using System.Windows.Forms;
 
@@ -15,26 +16,17 @@ namespace ControleEstoque
             Connection.SetConnectionString("localhost", "controle_de_estoque", "magnuz", "123456");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            /*if (connection.TestConnection())
+            FormLogin formLogin = new FormLogin
             {
-                FormLogin formLogin = new FormLogin
-                {
-                    StartPosition = FormStartPosition.CenterScreen
-                };
+                StartPosition = FormStartPosition.CenterScreen
+            };
 
-                DialogResult resultado = formLogin.ShowDialog();
+            DialogResult resultado = formLogin.ShowDialog();
 
-                if (resultado == DialogResult.Yes)
-                {*/
-                    Application.Run(new FormMain { StartPosition = FormStartPosition.CenterScreen });
-                /*}
+            if (resultado == DialogResult.Yes)
+            {
+                Application.Run(Controller.GetFormMain());
             }
-            else
-            {
-                MessageBox.Show(connection.GetErrorMessage(), "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
-
         }
     }
 }

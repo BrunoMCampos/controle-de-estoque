@@ -1,6 +1,6 @@
 ﻿namespace ControleEstoque.Classes
 {
-    internal enum EnumPrivileges
+    public enum EnumPrivileges
     {
         ADMINISTRATOR,
         GUEST,

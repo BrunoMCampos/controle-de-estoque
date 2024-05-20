@@ -176,6 +176,7 @@ namespace ControleEstoque.Repository.ProdutoRepository
                 return false;
             }
         }
+        
         public bool DeleteProduto(Product produto)
         {
             try
