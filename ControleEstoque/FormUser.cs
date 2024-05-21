@@ -13,23 +13,15 @@ using System.Windows.Forms;
 
 namespace ControleEstoque
 {
-    public partial class FormAddUser : Form
+    public partial class FormUser : Form
     {
         LoginRepository loginRepository = new LoginRepository();
 
-        public FormAddUser()
+        Login login;
+
+        public FormUser()
         {
             InitializeComponent();
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxPassword_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void AddUser_Load(object sender, EventArgs e)

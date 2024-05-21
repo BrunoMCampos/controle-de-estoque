@@ -1,4 +1,5 @@
-﻿using ControleEstoque.Repository;
+﻿using ControleEstoque.Classes;
+using ControleEstoque.Repository;
 using ControleEstoque.WindowController;
 using System;
 using System.Windows.Forms;
@@ -26,7 +27,10 @@ namespace ControleEstoque
                 bool passwordVerification = BCrypt.Net.BCrypt.Verify(password, dataBasePassword);
                 if (passwordVerification)
                 {
-                    Controller.createMainForm(loginRepository.GetPrivilegesByUser(user));
+                    int id = loginRepository.getIdByUser(user);
+                    Login currentUser = new Login(id, user, password, loginRepository.GetPrivilegesByUser(user));
+                    Controller.currentUser = currentUser;
+                    Controller.createMainForm();
                     DialogResult = DialogResult.Yes;
                 }
                 else

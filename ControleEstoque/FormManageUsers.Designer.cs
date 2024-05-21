@@ -29,16 +29,17 @@
         private void InitializeComponent()
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonSearch = new System.Windows.Forms.Button();
-            this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
-            this.buttonUpdate = new System.Windows.Forms.Button();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelUser = new System.Windows.Forms.Label();
             this.textBoxSearchUser = new System.Windows.Forms.TextBox();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.buttonResetPassword = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
+            this.buttonUpdatePrivileges = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -50,48 +51,28 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(6);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(568, 380);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(766, 380);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.WrapContents = false;
             // 
-            // buttonSearch
+            // flowLayoutPanel2
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(298, 6);
-            this.buttonSearch.Margin = new System.Windows.Forms.Padding(6);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
-            this.buttonSearch.TabIndex = 0;
-            this.buttonSearch.Text = "Pesquisar";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewUsers
-            // 
-            this.dataGridViewUsers.AllowUserToAddRows = false;
-            this.dataGridViewUsers.AllowUserToDeleteRows = false;
-            this.dataGridViewUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUsers.Location = new System.Drawing.Point(6, 52);
-            this.dataGridViewUsers.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
-            this.dataGridViewUsers.Name = "dataGridViewUsers";
-            this.dataGridViewUsers.ReadOnly = true;
-            this.dataGridViewUsers.Size = new System.Drawing.Size(556, 323);
-            this.dataGridViewUsers.TabIndex = 0;
-            // 
-            // buttonUpdate
-            // 
-            this.buttonUpdate.Location = new System.Drawing.Point(385, 6);
-            this.buttonUpdate.Margin = new System.Windows.Forms.Padding(6);
-            this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
-            this.buttonUpdate.TabIndex = 0;
-            this.buttonUpdate.Text = "Alterar";
-            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.flowLayoutPanel2.Controls.Add(this.labelUser);
+            this.flowLayoutPanel2.Controls.Add(this.textBoxSearchUser);
+            this.flowLayoutPanel2.Controls.Add(this.buttonSearch);
+            this.flowLayoutPanel2.Controls.Add(this.buttonResetPassword);
+            this.flowLayoutPanel2.Controls.Add(this.buttonUpdatePrivileges);
+            this.flowLayoutPanel2.Controls.Add(this.buttonDelete);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(9, 9);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(750, 34);
+            this.flowLayoutPanel2.TabIndex = 3;
             // 
             // labelUser
             // 
             this.labelUser.AutoSize = true;
-            this.labelUser.Location = new System.Drawing.Point(6, 9);
-            this.labelUser.Margin = new System.Windows.Forms.Padding(6, 9, 3, 0);
+            this.labelUser.Location = new System.Drawing.Point(6, 10);
+            this.labelUser.Margin = new System.Windows.Forms.Padding(6, 10, 3, 0);
             this.labelUser.Name = "labelUser";
             this.labelUser.Size = new System.Drawing.Size(46, 13);
             this.labelUser.TabIndex = 1;
@@ -99,48 +80,85 @@
             // 
             // textBoxSearchUser
             // 
-            this.textBoxSearchUser.Location = new System.Drawing.Point(61, 6);
-            this.textBoxSearchUser.Margin = new System.Windows.Forms.Padding(6);
+            this.textBoxSearchUser.Location = new System.Drawing.Point(61, 7);
+            this.textBoxSearchUser.Margin = new System.Windows.Forms.Padding(6, 7, 6, 6);
             this.textBoxSearchUser.Name = "textBoxSearchUser";
             this.textBoxSearchUser.Size = new System.Drawing.Size(225, 20);
             this.textBoxSearchUser.TabIndex = 2;
             // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(298, 5);
+            this.buttonSearch.Margin = new System.Windows.Forms.Padding(6, 5, 6, 6);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearch.TabIndex = 0;
+            this.buttonSearch.Text = "Pesquisar";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // buttonResetPassword
+            // 
+            this.buttonResetPassword.Location = new System.Drawing.Point(385, 5);
+            this.buttonResetPassword.Margin = new System.Windows.Forms.Padding(6, 5, 6, 6);
+            this.buttonResetPassword.Name = "buttonResetPassword";
+            this.buttonResetPassword.Size = new System.Drawing.Size(129, 23);
+            this.buttonResetPassword.TabIndex = 0;
+            this.buttonResetPassword.Text = "Resetar Senha";
+            this.buttonResetPassword.UseVisualStyleBackColor = true;
+            this.buttonResetPassword.Click += new System.EventHandler(this.buttonResetPassword_Click);
+            // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(472, 6);
-            this.buttonDelete.Margin = new System.Windows.Forms.Padding(6);
+            this.buttonDelete.Location = new System.Drawing.Point(667, 5);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(6, 5, 6, 6);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 0;
             this.buttonDelete.Text = "Excluir";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
-            // flowLayoutPanel2
+            // dataGridViewUsers
             // 
-            this.flowLayoutPanel2.Controls.Add(this.labelUser);
-            this.flowLayoutPanel2.Controls.Add(this.textBoxSearchUser);
-            this.flowLayoutPanel2.Controls.Add(this.buttonSearch);
-            this.flowLayoutPanel2.Controls.Add(this.buttonUpdate);
-            this.flowLayoutPanel2.Controls.Add(this.buttonDelete);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(9, 9);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(553, 34);
-            this.flowLayoutPanel2.TabIndex = 3;
+            this.dataGridViewUsers.AllowUserToAddRows = false;
+            this.dataGridViewUsers.AllowUserToDeleteRows = false;
+            this.dataGridViewUsers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridViewUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUsers.Location = new System.Drawing.Point(6, 52);
+            this.dataGridViewUsers.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.dataGridViewUsers.Name = "dataGridViewUsers";
+            this.dataGridViewUsers.ReadOnly = true;
+            this.dataGridViewUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewUsers.Size = new System.Drawing.Size(753, 323);
+            this.dataGridViewUsers.TabIndex = 0;
+            // 
+            // buttonUpdatePrivileges
+            // 
+            this.buttonUpdatePrivileges.Location = new System.Drawing.Point(526, 5);
+            this.buttonUpdatePrivileges.Margin = new System.Windows.Forms.Padding(6, 5, 6, 6);
+            this.buttonUpdatePrivileges.Name = "buttonUpdatePrivileges";
+            this.buttonUpdatePrivileges.Size = new System.Drawing.Size(129, 23);
+            this.buttonUpdatePrivileges.TabIndex = 0;
+            this.buttonUpdatePrivileges.Text = "Alterar Privilégios";
+            this.buttonUpdatePrivileges.UseVisualStyleBackColor = true;
+            this.buttonUpdatePrivileges.Click += new System.EventHandler(this.buttonUpdatePrivileges_Click);
             // 
             // FormManageUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 380);
+            this.ClientSize = new System.Drawing.Size(766, 380);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "FormManageUsers";
             this.ShowIcon = false;
             this.Text = "Gerenciador de Usuários";
             this.Load += new System.EventHandler(this.FormManageUsers_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -151,9 +169,10 @@
         private System.Windows.Forms.DataGridView dataGridViewUsers;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Label labelUser;
-        private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.Button buttonResetPassword;
         private System.Windows.Forms.TextBox textBoxSearchUser;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button buttonUpdatePrivileges;
     }
 }

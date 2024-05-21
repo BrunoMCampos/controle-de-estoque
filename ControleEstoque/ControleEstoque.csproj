@@ -101,11 +101,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormAddUser.cs">
+    <Compile Include="Classes\DataTableUserConstructor.cs" />
+    <Compile Include="FormResetPassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAddUser.Designer.cs">
-      <DependentUpon>FormAddUser.cs</DependentUpon>
+    <Compile Include="FormResetPassword.Designer.cs">
+      <DependentUpon>FormResetPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUser.Designer.cs">
+      <DependentUpon>FormUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\StockUpdateRecord.cs" />
     <Compile Include="Classes\EnumMovementType.cs" />
@@ -158,8 +165,11 @@
     <Compile Include="Repository\LoginRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="WindowController\Controller.cs" />
-    <EmbeddedResource Include="FormAddUser.resx">
-      <DependentUpon>FormAddUser.cs</DependentUpon>
+    <EmbeddedResource Include="FormResetPassword.resx">
+      <DependentUpon>FormResetPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUser.resx">
+      <DependentUpon>FormUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManageUsers.resx">
       <DependentUpon>FormManageUsers.cs</DependentUpon>

@@ -10,12 +10,14 @@ namespace ControleEstoque.WindowController
         private static FormProduct formProduct;
         private static FormUpdateStock formUpdateStock;
         private static FormStockUpdateRecord formStockUpdateRecord;
-        private static FormAddUser formAddUser;
+        private static FormUser formAddUser;
         private static FormManageUsers formManageUsers;
 
-        public static void createMainForm(EnumPrivileges privileges)
+        public static Login currentUser;
+
+        public static void createMainForm()
         {
-            formMain = new FormMain(privileges)
+            formMain = new FormMain(currentUser.Privileges)
             {
                 StartPosition = FormStartPosition.CenterScreen
             };
@@ -65,7 +67,7 @@ namespace ControleEstoque.WindowController
 
         public static DialogResult ShowFormAddUser()
         {
-            formAddUser = new FormAddUser();
+            formAddUser = new FormUser();
             formAddUser.StartPosition = FormStartPosition.CenterScreen;
             return formAddUser.ShowDialog();
         }

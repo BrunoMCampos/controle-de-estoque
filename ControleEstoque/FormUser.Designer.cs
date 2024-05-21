@@ -1,6 +1,6 @@
 ﻿namespace ControleEstoque
 {
-    partial class FormAddUser
+    partial class FormUser
     {
         /// <summary>
         /// Required designer variable.
@@ -73,7 +73,6 @@
             this.comboBoxPrivileges.Name = "comboBoxPrivileges";
             this.comboBoxPrivileges.Size = new System.Drawing.Size(223, 21);
             this.comboBoxPrivileges.TabIndex = 2;
-            this.comboBoxPrivileges.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBoxPassword
             // 
@@ -83,7 +82,6 @@
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(223, 20);
             this.textBoxPassword.TabIndex = 1;
-            this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
             // 
             // textBoxUser
             // 
@@ -168,14 +166,14 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // FormAddUser
+            // FormUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 158);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "FormAddUser";
+            this.Name = "FormUser";
             this.Text = "Adicionar Novo Usuário";
             this.Load += new System.EventHandler(this.AddUser_Load);
             this.panel1.ResumeLayout(false);

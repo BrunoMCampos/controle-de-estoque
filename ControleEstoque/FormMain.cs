@@ -11,7 +11,6 @@ namespace ControleEstoque
 {
     public partial class FormMain : Form
     {
-
         StockItemRepository itemRepository = new StockItemRepository();
         ProductRepository produtoRepository = new ProductRepository();
         List<StockItem> itemsStock = new List<StockItem>();
