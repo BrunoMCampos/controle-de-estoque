@@ -18,7 +18,7 @@ namespace ControleEstoque
 
         private void FormManageUsers_Load(object sender, EventArgs e)
         {
-            List<Login> users = loginRepository.GetAllUsersExceptByCurrentUser(Controller.currentUser.Id);
+            List<Login> users = loginRepository.GetAllUsersExceptByCurrentUser();
             ReloadTable(users);
         }
 

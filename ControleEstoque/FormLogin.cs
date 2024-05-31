@@ -27,8 +27,16 @@ namespace ControleEstoque
                 bool passwordVerification = BCrypt.Net.BCrypt.Verify(password, dataBasePassword);
                 if (passwordVerification)
                 {
-                    int id = loginRepository.getIdByUser(user);
-                    Login currentUser = new Login(id, user, password, loginRepository.GetPrivilegesByUser(user));
+                    Login currentUser = loginRepository.GetLoginByUser(user);
+                    if (currentUser.ResetPassword)
+                    {
+                        DialogResult dialogResult = Controller.ShowFormResetPassword(currentUser.Id);
+                        if(dialogResult != DialogResult.OK)
+                        {
+                            errorProvider1.SetError(this, "Alteração de senha não efetuada, acesso interrompido.");
+                            return;
+                        }
+                    } 
                     Controller.currentUser = currentUser;
                     Controller.createMainForm();
                     DialogResult = DialogResult.Yes;

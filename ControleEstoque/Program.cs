@@ -1,6 +1,7 @@
 ﻿using ControleEstoque.Classes;
 using ControleEstoque.WindowController;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ControleEstoque
@@ -13,6 +14,10 @@ namespace ControleEstoque
         [STAThread]
         static void Main()
         {
+            if (!Directory.Exists("C:/Controle de Estoque/Imagens"))
+            {
+                Directory.CreateDirectory("C:/Controle de Estoque/Imagens");
+            }
             Connection.SetConnectionString("localhost", "controle_de_estoque", "magnuz", "123456");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

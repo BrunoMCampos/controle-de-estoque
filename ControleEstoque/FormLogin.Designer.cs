@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
@@ -36,7 +37,9 @@
             this.labelTitulo = new System.Windows.Forms.Label();
             this.buttonLogin = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxUser
@@ -107,6 +110,10 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // FormLogin
             // 
             this.AcceptButton = this.buttonLogin;
@@ -120,10 +127,14 @@
             this.Controls.Add(this.labelUsuario);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxUser);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(467, 208);
+            this.MinimumSize = new System.Drawing.Size(467, 208);
             this.Name = "FormLogin";
             this.ShowIcon = false;
             this.Text = "Controle de Estoque";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,6 +149,7 @@
         private System.Windows.Forms.Label labelTitulo;
         private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
 

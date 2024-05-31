@@ -17,8 +17,6 @@ namespace ControleEstoque
     {
         LoginRepository loginRepository = new LoginRepository();
 
-        Login login;
-
         public FormUser()
         {
             InitializeComponent();

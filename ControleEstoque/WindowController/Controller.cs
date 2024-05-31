@@ -12,6 +12,7 @@ namespace ControleEstoque.WindowController
         private static FormStockUpdateRecord formStockUpdateRecord;
         private static FormUser formAddUser;
         private static FormManageUsers formManageUsers;
+        private static FormResetPassword formResetPassword;
 
         public static Login currentUser;
 
@@ -77,6 +78,13 @@ namespace ControleEstoque.WindowController
             formManageUsers = new FormManageUsers();
             formManageUsers.StartPosition = FormStartPosition.CenterScreen;
             return formManageUsers.ShowDialog();
+        }
+
+        public static DialogResult ShowFormResetPassword(int id)
+        {
+            formResetPassword = new FormResetPassword(id);
+            formResetPassword.StartPosition = FormStartPosition.CenterScreen;
+            return formResetPassword.ShowDialog();
         }
     }
 }

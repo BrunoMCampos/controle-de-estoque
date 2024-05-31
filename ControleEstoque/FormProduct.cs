@@ -157,7 +157,7 @@ namespace ControleEstoque
                 );
 
             // Criamos o caminho onde a imagem deve ser salva dentro da pasta do sistema. 
-            string newUrlImage = "../../Assets/Imagens/" + modifiedProduct.Name + Path.GetExtension(modifiedProduct.UrlImage);
+            string newUrlImage = "C:/Controle de Estoque/Imagens/" + modifiedProduct.Name + Path.GetExtension(modifiedProduct.UrlImage);
 
             // Verificamos se a nova imagem definida é diferente da anterior
             if(modifiedProduct.UrlImage != product.UrlImage)
@@ -211,7 +211,7 @@ namespace ControleEstoque
                 );
 
             // Criamos a nova url onde será salva a imagem na pasta do sistema.
-            string newUrlImage = "../../Assets/Imagens/" + newProduct.Name + Path.GetExtension(newProduct.UrlImage);
+            string newUrlImage = "C:/Controle de Estoque/Imagens/" + newProduct.Name + Path.GetExtension(newProduct.UrlImage);
 
             try
             {

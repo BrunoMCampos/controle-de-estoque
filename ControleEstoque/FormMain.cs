@@ -218,5 +218,10 @@ namespace ControleEstoque
         {
             Controller.ShowFormManageUser();
         }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
     }
 }

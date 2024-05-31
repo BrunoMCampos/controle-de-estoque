@@ -49,6 +49,8 @@
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adicionarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButtonSystem = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStock)).BeginInit();
@@ -241,7 +243,8 @@
             // toolStripMainForm
             // 
             this.toolStripMainForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButtonAdministrator});
+            this.toolStripDropDownButtonAdministrator,
+            this.toolStripDropDownButtonSystem});
             this.toolStripMainForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripMainForm.Name = "toolStripMainForm";
             this.toolStripMainForm.Size = new System.Drawing.Size(965, 25);
@@ -273,16 +276,34 @@
             // adicionarToolStripMenuItem
             // 
             this.adicionarToolStripMenuItem.Name = "adicionarToolStripMenuItem";
-            this.adicionarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.adicionarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.adicionarToolStripMenuItem.Text = "Adicionar";
             this.adicionarToolStripMenuItem.Click += new System.EventHandler(this.adicionarToolStripMenuItem_Click);
             // 
             // manageToolStripMenuItem
             // 
             this.manageToolStripMenuItem.Name = "manageToolStripMenuItem";
-            this.manageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manageToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.manageToolStripMenuItem.Text = "Gerir";
             this.manageToolStripMenuItem.Click += new System.EventHandler(this.manageToolStripMenuItem_Click);
+            // 
+            // toolStripDropDownButtonSystem
+            // 
+            this.toolStripDropDownButtonSystem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButtonSystem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ExitToolStripMenuItem});
+            this.toolStripDropDownButtonSystem.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonSystem.Image")));
+            this.toolStripDropDownButtonSystem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButtonSystem.Name = "toolStripDropDownButtonSystem";
+            this.toolStripDropDownButtonSystem.Size = new System.Drawing.Size(61, 22);
+            this.toolStripDropDownButtonSystem.Text = "Sistema";
+            // 
+            // ExitToolStripMenuItem
+            // 
+            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitToolStripMenuItem.Text = "Sair";
+            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -335,5 +356,7 @@
         private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adicionarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButtonSystem;
+        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
     }
 }

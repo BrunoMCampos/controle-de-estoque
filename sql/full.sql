@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS login (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
 	user VARCHAR(64) NOT NULL UNIQUE, 
 	password VARCHAR(255) NOT NULL, 
-    privileges VARCHAR(32) NOT NULL);
+    privileges VARCHAR(32) NOT NULL,
+    reset_password BOOL NOT NULL DEFAULT FALSE);
     
 INSERT 
 	INTO login (user, password, privileges) 

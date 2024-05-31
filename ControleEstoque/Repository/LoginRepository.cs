@@ -1,5 +1,8 @@
-﻿using ControleEstoque.Classes;
+﻿using BCrypt.Net;
+using ControleEstoque.Classes;
+using ControleEstoque.WindowController;
 using MySql.Data.MySqlClient;
+using Mysqlx.Session;
 using System;
 using System.Collections.Generic;
 
@@ -148,7 +151,8 @@ namespace ControleEstoque.Repository
                         Int32.Parse(dataReader["id"].ToString()),
                         dataReader["user"].ToString(),
                         dataReader["password"].ToString(),
-                        (EnumPrivileges)Enum.Parse(typeof(EnumPrivileges), dataReader["privileges"].ToString())
+                        (EnumPrivileges)Enum.Parse(typeof(EnumPrivileges), dataReader["privileges"].ToString()),
+                        (bool)dataReader["reset_password"]
                         );
 
                     loginList.Add(login);
@@ -166,7 +170,7 @@ namespace ControleEstoque.Repository
             return loginList;
         }
 
-        public List<Login> GetAllUsersExceptByCurrentUser(int id)
+        public List<Login> GetAllUsersExceptByCurrentUser()
         {
             List<Login> loginList = new List<Login>();
             try
@@ -175,7 +179,7 @@ namespace ControleEstoque.Repository
                     "SELECT * FROM login WHERE NOT id = @id",
                     Connection.getConnection()
                 );
-                query.Parameters.AddWithValue("@id", id);
+                query.Parameters.AddWithValue("@id", Controller.currentUser.Id);
 
                 Connection.Connect();
 
@@ -187,7 +191,8 @@ namespace ControleEstoque.Repository
                         Int32.Parse(dataReader["id"].ToString()),
                         dataReader["user"].ToString(),
                         dataReader["password"].ToString(),
-                        (EnumPrivileges)Enum.Parse(typeof(EnumPrivileges), dataReader["privileges"].ToString())
+                        (EnumPrivileges)Enum.Parse(typeof(EnumPrivileges), dataReader["privileges"].ToString()), 
+                        (bool)dataReader["reset_password"]
                         );
 
                     loginList.Add(login);
@@ -203,6 +208,45 @@ namespace ControleEstoque.Repository
                 Connection.Disconnect();
             }
             return loginList;
+        }
+
+        public Login GetLoginByUser(string user)
+        {
+            try
+            {
+                MySqlCommand query = new MySqlCommand(
+                    "SELECT * FROM login WHERE user = @user",
+                    Connection.getConnection()
+                );
+                query.Parameters.AddWithValue("@user", user);
+
+                Connection.Connect();
+
+                MySqlDataReader dataReader = query.ExecuteReader();
+
+                if (dataReader.Read())
+                {
+                    Login login = new Login(
+                        Int32.Parse(dataReader["id"].ToString()),
+                        dataReader["user"].ToString(),
+                        dataReader["password"].ToString(),
+                        (EnumPrivileges)Enum.Parse(typeof(EnumPrivileges), dataReader["privileges"].ToString()),
+                        (bool)dataReader["reset_password"]
+                        );
+                    Connection.Disconnect();
+                    return login;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                Connection.Disconnect();
+            }
+            return null;
         }
 
         public List<Login> GetLoginWithUserContainingTextExceptByCurrentUser(string text, int idCurrentUser)
@@ -227,7 +271,8 @@ namespace ControleEstoque.Repository
                         Int32.Parse(dataReader["id"].ToString()),
                         dataReader["user"].ToString(),
                         dataReader["password"].ToString(),
-                        (EnumPrivileges)Enum.Parse(typeof(EnumPrivileges), dataReader["privileges"].ToString())
+                        (EnumPrivileges)Enum.Parse(typeof(EnumPrivileges), dataReader["privileges"].ToString()),
+                        (bool)dataReader["reset_password"]
                         );
 
                     loginList.Add(login);
@@ -262,9 +307,10 @@ namespace ControleEstoque.Repository
                     Connection.Disconnect();
                     return true;
                 }
-                else {
+                else
+                {
                     Connection.Disconnect();
-                    return false; 
+                    return false;
                 }
             }
             catch (MySqlException ex)
@@ -315,14 +361,50 @@ namespace ControleEstoque.Repository
             try
             {
                 MySqlCommand query = new MySqlCommand(
-                    "UPDATE login SET reset_password @reset WHERE id = @id",
+                    "UPDATE login SET reset_password = @reset, password = @password WHERE id = @id",
                     Connection.getConnection()
                 );
+
+                string hashPassword = BCrypt.Net.BCrypt.HashPassword("123456");
+
                 query.Parameters.AddWithValue("@reset", reset);
+                query.Parameters.AddWithValue("@id", id);
+                query.Parameters.AddWithValue("@password", hashPassword);
+
+                Connection.Connect();
+                if (query.ExecuteNonQuery() > 0)
+                {
+                    Connection.Disconnect();
+                    return true;
+                }
+                Connection.Disconnect();
+                return false;
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
+            finally
+            {
+                Connection.Disconnect();
+            }
+            return false;
+        }
+
+        public bool updatePassword(int id, string password)
+        {
+            try
+            {
+                MySqlCommand query = new MySqlCommand(
+                    "UPDATE login SET reset_password = FALSE, password = @password WHERE id = @id",
+                    Connection.getConnection()
+                );
+                query.Parameters.AddWithValue("@password", password);
                 query.Parameters.AddWithValue("@id", id);
 
                 Connection.Connect();
-                if(query.ExecuteNonQuery() > 0)
+                if (query.ExecuteNonQuery() > 0)
                 {
                     Connection.Disconnect();
                     return true;
