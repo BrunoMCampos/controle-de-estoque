@@ -1,8 +1,6 @@
-﻿using BCrypt.Net;
-using ControleEstoque.Classes;
+﻿using ControleEstoque.Classes;
 using ControleEstoque.WindowController;
 using MySql.Data.MySqlClient;
-using Mysqlx.Session;
 using System;
 using System.Collections.Generic;
 
@@ -191,7 +189,7 @@ namespace ControleEstoque.Repository
                         Int32.Parse(dataReader["id"].ToString()),
                         dataReader["user"].ToString(),
                         dataReader["password"].ToString(),
-                        (EnumPrivileges)Enum.Parse(typeof(EnumPrivileges), dataReader["privileges"].ToString()), 
+                        (EnumPrivileges)Enum.Parse(typeof(EnumPrivileges), dataReader["privileges"].ToString()),
                         (bool)dataReader["reset_password"]
                         );
 

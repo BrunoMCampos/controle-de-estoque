@@ -61,8 +61,7 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.buttonStockUpdateRecords);
@@ -73,17 +72,17 @@
             this.panel1.Controls.Add(this.checkBoxOnlyPositive);
             this.panel1.Controls.Add(this.buttonUpdateTable);
             this.panel1.Controls.Add(this.buttonAddProduct);
-            this.panel1.Location = new System.Drawing.Point(658, 232);
+            this.panel1.Location = new System.Drawing.Point(677, 383);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(297, 308);
+            this.panel1.Size = new System.Drawing.Size(393, 224);
             this.panel1.TabIndex = 0;
             // 
             // buttonStockUpdateRecords
             // 
             this.buttonStockUpdateRecords.Location = new System.Drawing.Point(5, 86);
             this.buttonStockUpdateRecords.Name = "buttonStockUpdateRecords";
-            this.buttonStockUpdateRecords.Size = new System.Drawing.Size(282, 23);
+            this.buttonStockUpdateRecords.Size = new System.Drawing.Size(372, 23);
             this.buttonStockUpdateRecords.TabIndex = 6;
             this.buttonStockUpdateRecords.Text = "Registro de Alterações de Estoque";
             this.buttonStockUpdateRecords.UseVisualStyleBackColor = true;
@@ -91,10 +90,10 @@
             // 
             // buttonDeleteProduct
             // 
-            this.buttonDeleteProduct.Location = new System.Drawing.Point(152, 5);
+            this.buttonDeleteProduct.Location = new System.Drawing.Point(203, 5);
             this.buttonDeleteProduct.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.buttonDeleteProduct.Name = "buttonDeleteProduct";
-            this.buttonDeleteProduct.Size = new System.Drawing.Size(135, 23);
+            this.buttonDeleteProduct.Size = new System.Drawing.Size(174, 23);
             this.buttonDeleteProduct.TabIndex = 5;
             this.buttonDeleteProduct.Text = "Excluir Produto";
             this.buttonDeleteProduct.UseVisualStyleBackColor = true;
@@ -102,10 +101,10 @@
             // 
             // buttonSubtractStock
             // 
-            this.buttonSubtractStock.Location = new System.Drawing.Point(152, 31);
+            this.buttonSubtractStock.Location = new System.Drawing.Point(203, 31);
             this.buttonSubtractStock.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.buttonSubtractStock.Name = "buttonSubtractStock";
-            this.buttonSubtractStock.Size = new System.Drawing.Size(135, 23);
+            this.buttonSubtractStock.Size = new System.Drawing.Size(174, 23);
             this.buttonSubtractStock.TabIndex = 4;
             this.buttonSubtractStock.Text = "Diminuir Estoque";
             this.buttonSubtractStock.UseVisualStyleBackColor = true;
@@ -116,7 +115,7 @@
             this.buttonAddStock.Location = new System.Drawing.Point(5, 57);
             this.buttonAddStock.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
             this.buttonAddStock.Name = "buttonAddStock";
-            this.buttonAddStock.Size = new System.Drawing.Size(138, 23);
+            this.buttonAddStock.Size = new System.Drawing.Size(195, 23);
             this.buttonAddStock.TabIndex = 3;
             this.buttonAddStock.Text = "Aumentar Estoque";
             this.buttonAddStock.UseVisualStyleBackColor = true;
@@ -127,7 +126,7 @@
             this.buttonUpdateProduct.Location = new System.Drawing.Point(5, 31);
             this.buttonUpdateProduct.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
             this.buttonUpdateProduct.Name = "buttonUpdateProduct";
-            this.buttonUpdateProduct.Size = new System.Drawing.Size(138, 23);
+            this.buttonUpdateProduct.Size = new System.Drawing.Size(195, 23);
             this.buttonUpdateProduct.TabIndex = 2;
             this.buttonUpdateProduct.Text = "Alterar Produto";
             this.buttonUpdateProduct.UseVisualStyleBackColor = true;
@@ -137,7 +136,7 @@
             // 
             this.checkBoxOnlyPositive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxOnlyPositive.AutoSize = true;
-            this.checkBoxOnlyPositive.Location = new System.Drawing.Point(18, 281);
+            this.checkBoxOnlyPositive.Location = new System.Drawing.Point(18, 197);
             this.checkBoxOnlyPositive.Name = "checkBoxOnlyPositive";
             this.checkBoxOnlyPositive.Size = new System.Drawing.Size(269, 17);
             this.checkBoxOnlyPositive.TabIndex = 1;
@@ -150,7 +149,7 @@
             this.buttonUpdateTable.Location = new System.Drawing.Point(5, 5);
             this.buttonUpdateTable.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
             this.buttonUpdateTable.Name = "buttonUpdateTable";
-            this.buttonUpdateTable.Size = new System.Drawing.Size(138, 23);
+            this.buttonUpdateTable.Size = new System.Drawing.Size(195, 23);
             this.buttonUpdateTable.TabIndex = 0;
             this.buttonUpdateTable.Text = "Atualizar Tabela";
             this.buttonUpdateTable.UseVisualStyleBackColor = true;
@@ -158,10 +157,10 @@
             // 
             // buttonAddProduct
             // 
-            this.buttonAddProduct.Location = new System.Drawing.Point(152, 57);
+            this.buttonAddProduct.Location = new System.Drawing.Point(203, 57);
             this.buttonAddProduct.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.buttonAddProduct.Name = "buttonAddProduct";
-            this.buttonAddProduct.Size = new System.Drawing.Size(135, 23);
+            this.buttonAddProduct.Size = new System.Drawing.Size(174, 23);
             this.buttonAddProduct.TabIndex = 0;
             this.buttonAddProduct.Text = "Adicionar Produto";
             this.buttonAddProduct.UseVisualStyleBackColor = true;
@@ -176,7 +175,7 @@
             this.panel2.Controls.Add(this.dataGridViewStock);
             this.panel2.Location = new System.Drawing.Point(12, 76);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(637, 464);
+            this.panel2.Size = new System.Drawing.Size(659, 531);
             this.panel2.TabIndex = 0;
             // 
             // dataGridViewStock
@@ -191,7 +190,7 @@
             this.dataGridViewStock.Name = "dataGridViewStock";
             this.dataGridViewStock.ReadOnly = true;
             this.dataGridViewStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewStock.Size = new System.Drawing.Size(637, 464);
+            this.dataGridViewStock.Size = new System.Drawing.Size(659, 531);
             this.dataGridViewStock.TabIndex = 0;
             this.dataGridViewStock.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewStock_CellContentClick_1);
             this.dataGridViewStock.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEstoque_CellDoubleClick);
@@ -200,17 +199,20 @@
             // 
             // pictureBoxImage
             // 
-            this.pictureBoxImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxImage.Location = new System.Drawing.Point(658, 28);
+            this.pictureBoxImage.Location = new System.Drawing.Point(677, 28);
             this.pictureBoxImage.Name = "pictureBoxImage";
-            this.pictureBoxImage.Size = new System.Drawing.Size(297, 198);
+            this.pictureBoxImage.Size = new System.Drawing.Size(393, 349);
             this.pictureBoxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage.TabIndex = 1;
             this.pictureBoxImage.TabStop = false;
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.AutoSize = true;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.textBoxProductName);
@@ -218,15 +220,17 @@
             this.panel3.Location = new System.Drawing.Point(12, 28);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(10);
-            this.panel3.Size = new System.Drawing.Size(637, 42);
+            this.panel3.Size = new System.Drawing.Size(659, 42);
             this.panel3.TabIndex = 2;
             // 
             // textBoxProductName
             // 
+            this.textBoxProductName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxProductName.Location = new System.Drawing.Point(118, 10);
             this.textBoxProductName.Margin = new System.Windows.Forms.Padding(0);
             this.textBoxProductName.Name = "textBoxProductName";
-            this.textBoxProductName.Size = new System.Drawing.Size(502, 20);
+            this.textBoxProductName.Size = new System.Drawing.Size(524, 20);
             this.textBoxProductName.TabIndex = 1;
             this.textBoxProductName.TextChanged += new System.EventHandler(this.textBoxProductName_TextChanged);
             // 
@@ -247,7 +251,7 @@
             this.toolStripDropDownButtonSystem});
             this.toolStripMainForm.Location = new System.Drawing.Point(0, 0);
             this.toolStripMainForm.Name = "toolStripMainForm";
-            this.toolStripMainForm.Size = new System.Drawing.Size(965, 25);
+            this.toolStripMainForm.Size = new System.Drawing.Size(1080, 25);
             this.toolStripMainForm.TabIndex = 3;
             this.toolStripMainForm.Text = "toolStrip1";
             // 
@@ -269,7 +273,7 @@
             this.adicionarToolStripMenuItem,
             this.manageToolStripMenuItem});
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.userToolStripMenuItem.Text = "Usuários";
             this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
             // 
@@ -301,7 +305,7 @@
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.ExitToolStripMenuItem.Text = "Sair";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -309,7 +313,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 552);
+            this.ClientSize = new System.Drawing.Size(1080, 619);
             this.Controls.Add(this.toolStripMainForm);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.pictureBoxImage);

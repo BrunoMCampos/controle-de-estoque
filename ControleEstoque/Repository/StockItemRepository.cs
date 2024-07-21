@@ -14,7 +14,12 @@ namespace ControleEstoque.Repository
             try
             {
                 MySqlCommand query = new MySqlCommand(
-                        "SELECT e.*,p.descricao,p.codigo,p.nome,p.unidade,p.url_imagem FROM estoque e, produto p WHERE e.id = @id LIMIT 1",
+                        "SELECT " +
+                        "e.*,p.description,p.cod,p.name,p.unit,p.url_image " +
+                        "FROM " +
+                        "stock e, product p " +
+                        "WHERE " +
+                        "e.id = @id LIMIT 1",
                         Connection.getConnection()
                     );
 
@@ -27,14 +32,14 @@ namespace ControleEstoque.Repository
                     StockItem item = new StockItem(
                         (int)dataReader["id"],
                         new Product(
-                            (int)dataReader["produto_id"],
-                            dataReader["nome"].ToString(),
-                            dataReader["descricao"].ToString(),
-                            dataReader["codigo"].ToString(),
-                            dataReader["unidade"].ToString(),
-                            dataReader["url_imagem"].ToString()
+                            (int)dataReader["product_id"],
+                            dataReader["name"].ToString(),
+                            dataReader["description"].ToString(),
+                            dataReader["cod"].ToString(),
+                            dataReader["unit"].ToString(),
+                            dataReader["url_image"].ToString()
                         ),
-                        (int)dataReader["quantidade_estoque"]
+                        (int)dataReader["stock_amount"]
                     );
                     Connection.Disconnect();
                     return item;
@@ -57,14 +62,16 @@ namespace ControleEstoque.Repository
                 if (onlyPositiveAmount)
                 {
                     query = new MySqlCommand(
-                            "SELECT e.*,p.descricao,p.codigo,p.nome,p.unidade,p.url_imagem FROM estoque e, produto p WHERE e.produto_id = p.id AND e.quantidade_estoque > 0 LIMIT 20",
+                            "SELECT e.*, p.description, p.cod, p.name, p.unit, p.url_image FROM stock e, product p " +
+                            "WHERE e.product_id = p.id AND e.stock_amount > 0 LIMIT 20",
                             Connection.getConnection()
                         );
                 }
                 else
                 {
                     query = new MySqlCommand(
-                            "SELECT e.*,p.descricao,p.codigo,p.nome,p.unidade,p.url_imagem FROM estoque e, produto p WHERE e.produto_id = p.id LIMIT 20",
+                            "SELECT e.*, p.description, p.cod, p.name, p.unit, p.url_image FROM stock e, product p " +
+                            "WHERE e.product_id = p.id LIMIT 20",
                             Connection.getConnection()
                         );
                 }
@@ -74,17 +81,17 @@ namespace ControleEstoque.Repository
                 List<StockItem> Items = new List<StockItem>();
                 while (dataReader.Read())
                 {
-                    double doubleStockAmount = Double.Parse(dataReader["quantidade_estoque"].ToString());
+                    double doubleStockAmount = Double.Parse(dataReader["stock_amount"].ToString());
 
                     StockItem item = new StockItem(
                         (int)dataReader["id"],
                         new Product(
-                            (int)dataReader["produto_id"],
-                            dataReader["nome"].ToString(),
-                            dataReader["descricao"].ToString(),
-                            dataReader["codigo"].ToString(),
-                            dataReader["unidade"].ToString(),
-                            dataReader["url_imagem"].ToString()
+                            (int)dataReader["product_id"],
+                            dataReader["name"].ToString(),
+                            dataReader["description"].ToString(),
+                            dataReader["cod"].ToString(),
+                            dataReader["unit"].ToString(),
+                            dataReader["url_image"].ToString()
                         ),
                         doubleStockAmount
                     );

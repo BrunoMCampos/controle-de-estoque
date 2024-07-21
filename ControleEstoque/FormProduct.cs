@@ -160,7 +160,7 @@ namespace ControleEstoque
             string newUrlImage = "C:/Controle de Estoque/Imagens/" + modifiedProduct.Name + Path.GetExtension(modifiedProduct.UrlImage);
 
             // Verificamos se a nova imagem definida é diferente da anterior
-            if(modifiedProduct.UrlImage != product.UrlImage)
+            if(modifiedProduct.UrlImage != newUrlImage)
             {
                 // Verificamos se a nova imagem de fato existe
                 if (File.Exists(modifiedProduct.UrlImage))

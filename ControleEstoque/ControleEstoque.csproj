@@ -130,6 +130,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\DataTableUserConstructor.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormResetPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,10 +148,10 @@
     <Compile Include="FormUser.Designer.cs">
       <DependentUpon>FormUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\StockUpdateRecord.cs" />
+    <Compile Include="Classes\Domain\StockUpdateRecord.cs" />
     <Compile Include="Classes\EnumMovementType.cs" />
     <Compile Include="Classes\EnumPrivileges.cs" />
-    <Compile Include="Classes\Login.cs" />
+    <Compile Include="Classes\Domain\Login.cs" />
     <Compile Include="FormManageUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,9 +165,9 @@
       <DependentUpon>FormProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\DataTableStockConstructor.cs" />
-    <Compile Include="Classes\Connection.cs" />
-    <Compile Include="Classes\StockItem.cs" />
-    <Compile Include="Classes\Product.cs" />
+    <Compile Include="Classes\Connection\Connection.cs" />
+    <Compile Include="Classes\Domain\StockItem.cs" />
+    <Compile Include="Classes\Domain\Product.cs" />
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     <Compile Include="Repository\LoginRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="WindowController\Controller.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormResetPassword.resx">
       <DependentUpon>FormResetPassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,11 +255,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Imagens\" />
-    <Folder Include="Classes\Domain\Connection\" />
-    <Folder Include="Classes\Domain\Login\" />
-    <Folder Include="Classes\Domain\Product\" />
-    <Folder Include="Classes\Domain\StockUpdate\" />
-    <Folder Include="Classes\Domain\Stock\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

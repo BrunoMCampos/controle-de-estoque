@@ -15,7 +15,7 @@ namespace ControleEstoque.Repository.ProdutoRepository
             try
             {
                 MySqlCommand query = new MySqlCommand(
-                        "SELECT * FROM produto WHERE id = @id LIMIT 1",
+                        "SELECT * FROM product WHERE id = @id LIMIT 1",
                         Connection.getConnection()
                     );
 
@@ -28,24 +28,24 @@ namespace ControleEstoque.Repository.ProdutoRepository
                 {
                     Product product = new Product(
                         (int)dataReader["id"],
-                        (string)dataReader["nome"],
-                        (string)dataReader["unidade"]
+                        (string)dataReader["name"],
+                        (string)dataReader["unit"]
                     );
                     if (!dataReader.IsDBNull(2))
                     {
-                        product.Description = (string)dataReader["descricao"];
+                        product.Description = (string)dataReader["description"];
                     }
                     if (!dataReader.IsDBNull(3))
                     {
-                        product.Cod = (string)dataReader["codigo"];
+                        product.Cod = (string)dataReader["cod"];
                     }
                     if (!dataReader.IsDBNull(4))
                     {
-                        product.Cod = (string)dataReader["unidade"];
+                        product.Cod = (string)dataReader["unit"];
                     }
                     if (!dataReader.IsDBNull(5))
                     {
-                        product.UrlImage = (string)dataReader["url_imagem"];
+                        product.UrlImage = (string)dataReader["url_image"];
                     }
                     Connection.Disconnect();
                     return product;
@@ -66,11 +66,11 @@ namespace ControleEstoque.Repository.ProdutoRepository
             try
             {
                 MySqlCommand query = new MySqlCommand(
-                        "SELECT * FROM produto WHERE nome = @nome LIMIT 1",
+                        "SELECT * FROM product WHERE name = @name LIMIT 1",
                         Connection.getConnection()
                     );
 
-                query.Parameters.AddWithValue("@nome", name);
+                query.Parameters.AddWithValue("@name", name);
                 Connection.Connect();
                 MySqlDataReader dataReader = query.ExecuteReader();
 
@@ -79,24 +79,24 @@ namespace ControleEstoque.Repository.ProdutoRepository
                 {
                     Product product = new Product(
                         (int)dataReader["id"],
-                        (string)dataReader["nome"],
-                        (string)dataReader["unidade"]
+                        (string)dataReader["name"],
+                        (string)dataReader["unit"]
                     );
                     if (!dataReader.IsDBNull(2))
                     {
-                        product.Description = (string)dataReader["descricao"];
+                        product.Description = (string)dataReader["description"];
                     }
                     if (!dataReader.IsDBNull(3))
                     {
-                        product.Cod = (string)dataReader["codigo"];
+                        product.Cod = (string)dataReader["cod"];
                     }
                     if (!dataReader.IsDBNull(4))
                     {
-                        product.Cod = (string)dataReader["unidade"];
+                        product.Cod = (string)dataReader["unit"];
                     }
                     if (!dataReader.IsDBNull(5))
                     {
-                        product.UrlImage = (string)dataReader["url_imagem"];
+                        product.UrlImage = (string)dataReader["url_image"];
                     }
                     Connection.Disconnect();
                     return product;
@@ -117,15 +117,15 @@ namespace ControleEstoque.Repository.ProdutoRepository
             try
             {
                 MySqlCommand query = new MySqlCommand(
-                        "INSERT INTO produto (nome, descricao, codigo, unidade, url_imagem) " +
-                        "VALUES (@nome, @descricao, @codigo, @unidade, @url_imagem)",
+                        "INSERT INTO product (name, description, cod, unit, url_image) " +
+                        "VALUES (@name, @description, @cod, @unit, @url_image)",
                         Connection.getConnection()
                     );
-                query.Parameters.AddWithValue("@nome", produto.Name);
-                query.Parameters.AddWithValue("@descricao", produto.Description);
-                query.Parameters.AddWithValue("@codigo", produto.Cod);
-                query.Parameters.AddWithValue("@unidade", produto.Unit);
-                query.Parameters.AddWithValue("@url_imagem", produto.UrlImage);
+                query.Parameters.AddWithValue("@name", produto.Name);
+                query.Parameters.AddWithValue("@description", produto.Description);
+                query.Parameters.AddWithValue("@cod", produto.Cod);
+                query.Parameters.AddWithValue("@unit", produto.Unit);
+                query.Parameters.AddWithValue("@url_image", produto.UrlImage);
 
                 Connection.Connect();
                 query.ExecuteNonQuery();
@@ -146,22 +146,22 @@ namespace ControleEstoque.Repository.ProdutoRepository
             try
             {
                 MySqlCommand query = new MySqlCommand(
-                        "UPDATE produto SET " +
-                        "nome = @nome, " +
-                        "descricao = @descricao, " +
-                        "codigo = @codigo, " +
-                        "unidade = @unidade, " +
-                        "url_imagem = @url_imagem " +
+                        "UPDATE product SET " +
+                        "name = @name, " +
+                        "description = @description, " +
+                        "cod = @cod, " +
+                        "unit = @unit, " +
+                        "url_image = @url_image " +
                         "WHERE " +
                         "id = @id",
                         Connection.getConnection()
                     );
                 query.Parameters.AddWithValue("@id", produto.Id);
-                query.Parameters.AddWithValue("@nome", produto.Name);
-                query.Parameters.AddWithValue("@descricao", produto.Description);
-                query.Parameters.AddWithValue("@codigo", produto.Cod);
-                query.Parameters.AddWithValue("@unidade", produto.Unit);
-                query.Parameters.AddWithValue("@url_imagem", produto.UrlImage);
+                query.Parameters.AddWithValue("@name", produto.Name);
+                query.Parameters.AddWithValue("@description", produto.Description);
+                query.Parameters.AddWithValue("@cod", produto.Cod);
+                query.Parameters.AddWithValue("@unit", produto.Unit);
+                query.Parameters.AddWithValue("@url_image", produto.UrlImage);
 
                 Connection.Connect();
                 query.ExecuteNonQuery();
@@ -182,7 +182,7 @@ namespace ControleEstoque.Repository.ProdutoRepository
             try
             {
                 MySqlCommand query = new MySqlCommand(
-                        "DELETE FROM produto WHERE id = @id",
+                        "DELETE FROM product WHERE id = @id",
                         Connection.getConnection()
                     );
                 query.Parameters.AddWithValue("@id", produto.Id);

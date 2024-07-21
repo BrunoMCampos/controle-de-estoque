@@ -9,30 +9,30 @@
         private string unit;
         private string urlImage;
 
-        public Product(int id, string nome, string unidade)
+        public Product(int id, string name, string unit)
         {
             this.id = id;
-            this.name = nome;
-            this.unit = unidade;
+            this.name = name;
+            this.unit = unit;
         }
 
-        public Product(string nome, string descricao, string codigo, string unidade, string urlImagem)
+        public Product(string name, string description, string cod, string unit, string urlImage)
         {
-            this.name = nome;
-            this.description = descricao;
-            this.cod = codigo;
-            this.unit = unidade;
-            this.urlImage = urlImagem;
+            this.name = name;
+            this.description = description;
+            this.cod = cod;
+            this.unit = unit;
+            this.urlImage = urlImage;
         }
 
-        public Product(int id, string nome, string descricao, string codigo, string unidade, string urlImagem)
+        public Product(int id, string name, string description, string cod, string unit, string urlImage)
         {
             this.id = id;
-            this.name = nome;
-            this.description = descricao;
-            this.cod = codigo;
-            this.unit = unidade;
-            this.urlImage = urlImagem;
+            this.name = name;
+            this.description = description;
+            this.cod = cod;
+            this.unit = unit;
+            this.urlImage = urlImage;
         }
 
         public int Id { get => id; set => id = value; }

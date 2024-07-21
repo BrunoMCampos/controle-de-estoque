@@ -30,7 +30,10 @@ namespace ControleEstoque
 
             if (resultado == DialogResult.Yes)
             {
+                Controller.currentUser = new Login("admin","123456",EnumPrivileges.ADMINISTRATOR);
+                Controller.createMainForm();
                 Application.Run(Controller.GetFormMain());
+                Application.Run(new FormControleEstoque());
             }
         }
     }

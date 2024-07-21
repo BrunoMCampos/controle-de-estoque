@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS controle_de_estoque;
+CREATE DATABASE IF NOT EXISTS stock_control;
 
-USE controle_de_estoque;
+USE stock_control;
 
 CREATE TABLE IF NOT EXISTS login (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
@@ -13,42 +13,42 @@ INSERT
 	INTO login (user, password, privileges) 
 	VALUES ('admin','$2a$12$BN1WBC3ys77AhCd2qZu8YejTcVIYwsZhEAdgP5OQar4YfnNWwMx.i','ADMINISTRATOR');
     
-CREATE TABLE IF NOT EXISTS produto (
+CREATE TABLE IF NOT EXISTS product (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(64) NOT NULL UNIQUE,
-    descricao VARCHAR(255),
-    codigo VARCHAR (64),
-    unidade VARCHAR(25) NOT NULL,
-    url_imagem VARCHAR(523));
+    name VARCHAR(64) NOT NULL UNIQUE,
+    description VARCHAR(255),
+    cod VARCHAR (64),
+    unit VARCHAR(25) NOT NULL,
+    url_image VARCHAR(523));
     
-CREATE TABLE IF NOT EXISTS estoque (
+CREATE TABLE IF NOT EXISTS stock (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-	produto_id INT NOT NULL,
-    quantidade_estoque DECIMAL(5,2) NOT NULL DEFAULT 0,
-    FOREIGN KEY (produto_id) REFERENCES produto (id) ON DELETE CASCADE);
+	product_id INT NOT NULL,
+    stock_amount DECIMAL(5,2) NOT NULL DEFAULT 0,
+    FOREIGN KEY (product_id) REFERENCES product (id) ON DELETE CASCADE);
 
 CREATE TRIGGER 
-	insert_produto_estoque 
-AFTER INSERT ON produto 
+	insert_product_stock 
+AFTER INSERT ON product 
 FOR EACH ROW 
-	INSERT INTO estoque (produto_id, quantidade_estoque) VALUES (NEW.id, 0);
+	INSERT INTO stock (product_id, stock_amount) VALUES (NEW.id, 0);
 
-INSERT INTO produto (nome, unidade) VALUES ("teste", "PC");
-INSERT INTO produto (nome, codigo, unidade) VALUES ("teste número 2", "CSF135", "M");
+INSERT INTO product (name, unit) VALUES ("teste", "PC");
+INSERT INTO product (name, cod, unit) VALUES ("teste número 2", "CSF135", "M");
 
-CREATE TABLE IF NOT EXISTS alteracao_estoque (
+CREATE TABLE IF NOT EXISTS stock_update (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    estoque_id INT NOT NULL,
-    saldo_inicial DECIMAL(5,2) NOT NULL,
-    movimentacao VARCHAR(10) NOT NULL,
-    quantidade_movimentada DECIMAL(5,2) NOT NULL,
-    saldo_final DECIMAL(5,2) NOT NULL,
-    motivo VARCHAR(25) NOT NULL,
-    justificativa VARCHAR (255),
-    data_hora_alteracao DATETIME NOT NULL);
+    stock_id INT NOT NULL,
+    start_amount DECIMAL(5,2) NOT NULL,
+    movement_type VARCHAR(10) NOT NULL,
+    movement_amount DECIMAL(5,2) NOT NULL,
+    end_amount DECIMAL(5,2) NOT NULL,
+    reason VARCHAR(25) NOT NULL,
+    justification VARCHAR (255),
+    update_date_time DATETIME NOT NULL);
     
 CREATE TRIGGER 
-	alterar_estoque
-AFTER INSERT ON alteracao_estoque 
+	update_stock
+AFTER INSERT ON stock_update 
 FOR EACH ROW 
-	UPDATE estoque SET quantidade_estoque = NEW.saldo_final WHERE id = NEW.estoque_id;
+	UPDATE stock SET stock_amount = NEW.end_amount WHERE id = NEW.stock_id;
