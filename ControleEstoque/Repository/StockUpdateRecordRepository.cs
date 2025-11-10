@@ -13,8 +13,8 @@ namespace ControleEstoque.Repository
             try
             {
                 MySqlCommand query = new MySqlCommand(
-                        "INSERT INTO alteracao_estoque " +
-                        "(estoque_id, saldo_inicial, movimentacao, quantidade_movimentada, saldo_final, motivo, justificativa, data_hora_alteracao) " +
+                        "INSERT INTO stock_update " +
+                        "(stock_id, start_amount, movement_type, movement_amount, end_amount, reason, justification, update_date_time) " +
                         "VALUES " +
                         "(@estoque_id, @saldo_inicial, @movimentacao, @quantidade_movimentada, @saldo_final, @motivo, @justificativa, @data_hora_alteracao)",
                         Connection.getConnection()
@@ -48,10 +48,10 @@ namespace ControleEstoque.Repository
             try
             {
                 MySqlCommand query = new MySqlCommand(
-                        "SELECT * FROM alteracao_estoque " +
+                        "SELECT * FROM stock_update " +
                         "WHERE " +
-                        "estoque_id = @stockId " +
-                        "ORDER BY data_hora_alteracao DESC",
+                        "stock_id = @stockId " +
+                        "ORDER BY update_date_time DESC",
                         Connection.getConnection()
                     );
                 query.Parameters.AddWithValue("@stockId", stockItem.Id.ToString());
@@ -64,13 +64,13 @@ namespace ControleEstoque.Repository
                 {
                     StockUpdateRecord stockUpdate = new StockUpdateRecord(
                         stockItem,
-                        Double.Parse(reader["saldo_inicial"].ToString()),
-                        (EnumMovementType) Int32.Parse(reader["movimentacao"].ToString()),
-                        Double.Parse(reader["quantidade_movimentada"].ToString()),
-                        Double.Parse(reader["saldo_final"].ToString()),
-                        reader["motivo"].ToString(),
-                        reader["justificativa"].ToString(),
-                        DateTime.Parse(reader["data_hora_alteracao"].ToString())
+                        Double.Parse(reader["start_amount"].ToString()),
+                        (EnumMovementType) Int32.Parse(reader["movement_type"].ToString()),
+                        Double.Parse(reader["movement_amount"].ToString()),
+                        Double.Parse(reader["end_amount"].ToString()),
+                        reader["reason"].ToString(),
+                        reader["justification"].ToString(),
+                        DateTime.Parse(reader["update_date_time"].ToString())
                     );
 
                     stockUpdateRecordList.Add(stockUpdate);
@@ -100,11 +100,11 @@ namespace ControleEstoque.Repository
             try
             {
                 MySqlCommand query = new MySqlCommand(
-                        "SELECT * FROM alteracao_estoque " +
+                        "SELECT * FROM stock_update " +
                         "WHERE " +
-                        "estoque_id = @stockId AND " +
-                        "data_hora_alteracao BETWEEN @startDate AND @endDate " +
-                        "ORDER BY data_hora_alteracao DESC",
+                        "stock_id = @stockId AND " +
+                        "update_date_time BETWEEN @startDate AND @endDate " +
+                        "ORDER BY update_date_time DESC",
                         Connection.getConnection()
                     );
                 query.Parameters.AddWithValue("@stockId", stockItem.Id.ToString());
@@ -119,13 +119,13 @@ namespace ControleEstoque.Repository
                 {
                     StockUpdateRecord stockUpdate = new StockUpdateRecord(
                         stockItem,
-                        Double.Parse(reader["saldo_inicial"].ToString()),
-                        (EnumMovementType)Int32.Parse(reader["movimentacao"].ToString()),
-                        Double.Parse(reader["quantidade_movimentada"].ToString()),
-                        Double.Parse(reader["saldo_final"].ToString()),
-                        reader["motivo"].ToString(),
-                        reader["justificativa"].ToString(),
-                        DateTime.Parse(reader["data_hora_alteracao"].ToString())
+                        Double.Parse(reader["start_amount"].ToString()),
+                        (EnumMovementType)Int32.Parse(reader["movement_type"].ToString()),
+                        Double.Parse(reader["movement_amount"].ToString()),
+                        Double.Parse(reader["end_amount"].ToString()),
+                        reader["reason"].ToString(),
+                        reader["justification"].ToString(),
+                        DateTime.Parse(reader["update_date_time"].ToString())
                     );
 
                     stockUpdateRecordList.Add(stockUpdate);

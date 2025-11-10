@@ -18,7 +18,7 @@ namespace ControleEstoque
             {
                 Directory.CreateDirectory("C:/Controle de Estoque/Imagens");
             }
-            Connection.SetConnectionString("localhost", "controle_de_estoque", "magnuz", "123456");
+            Connection.SetConnectionString("localhost", "stock_control", "root", "root");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             FormLogin formLogin = new FormLogin
@@ -33,7 +33,7 @@ namespace ControleEstoque
                 Controller.currentUser = new Login("admin","123456",EnumPrivileges.ADMINISTRATOR);
                 Controller.createMainForm();
                 Application.Run(Controller.GetFormMain());
-                Application.Run(new FormControleEstoque());
+                //Application.Run(new FormControleEstoque());
             }
         }
     }
